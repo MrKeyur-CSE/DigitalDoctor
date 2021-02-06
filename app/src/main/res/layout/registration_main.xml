@@ -62,17 +62,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mobilenumber" />
 
-    <EditText
+    <DatePicker
         android:id="@+id/editTextDate"
         android:layout_width="247dp"
         android:layout_height="39dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
+        android:datePickerMode="spinner"
         android:ems="10"
-        android:hint="Date Of Birth"
         android:inputType="date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintHorizontal_bias="0.539"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regi_password" />
 

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!-- DatePicker Options -->
+        <TextView
+            android:id="@+id/date_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/selected_date"/>
+
+        <Button
+            android:id="@+id/date_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pick_date"/>
+
+        <Button
+            android:id="@+id/original_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/original_button"/>
+
+        <CheckBox
+            android:id="@+id/show_version_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_version_2"/>
+
+        <CheckBox
+            android:id="@+id/mode_dark_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mode_dark" />
+
+        <CheckBox
+            android:id="@+id/mode_custom_accent_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mode_custom_accent" />
+
+        <CheckBox
+            android:id="@+id/vibrate_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vibrate"
+            android:checked="true"/>
+
+        <CheckBox
+            android:id="@+id/switch_orientation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switch_orientation" />
+
+        <CheckBox
+            android:id="@+id/dismiss_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dismiss"
+            android:checked="false"/>
+
+        <CheckBox
+            android:id="@+id/show_year_first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show_year_first"
+            android:checked="false"/>
+
+        <CheckBox
+            android:id="@+id/title_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title"
+            android:checked="false"/>
+
+        <CheckBox
+            android:id="@+id/limit_dates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/limit_dates"
+            android:checked="false"/>
+
+        <CheckBox
+            android:id="@+id/highlight_dates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/highlight_dates"
+            android:checked="false"/>
+
+        <CheckBox
+            android:id="@+id/default_selection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_selection"
+            android:checked="false"/>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
