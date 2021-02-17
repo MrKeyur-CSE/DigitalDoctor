@@ -124,18 +124,21 @@
         app:layout_constraintStart_toEndOf="@+id/to"
         app:layout_constraintTop_toBottomOf="@+id/doc_Address" />
 
-     <Button
+    <Button
         android:id="@+id/frombutton"
         android:layout_width="40dp"
         android:layout_height="51dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="40dp"
         android:text="+"
         app:cornerRadius="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintHorizontal_bias="0.989"
+        app:layout_constraintStart_toEndOf="@+id/from"
+        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintVertical_bias="0.131" />
 
     <TextView
         android:id="@+id/fromtimeadd"
@@ -148,6 +151,36 @@
         app:layout_constraintHorizontal_bias="0.397"
         app:layout_constraintStart_toEndOf="@+id/from"
         app:layout_constraintTop_toBottomOf="@+id/totimeadd" />
+
+    <Button
+        android:id="@+id/loginbutton"
+        android:layout_width="132dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#F23B5E"
+        android:elevation="100dp"
+        android:text="Log in"
+        android:textSize="18sp"
+        app:cornerRadius="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.171"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/from"
+        app:layout_constraintVertical_bias="0.442" />
+
+    <TextView
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:textColor="#11142D"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
+        app:layout_constraintStart_toEndOf="@+id/loginbutton"
+        app:layout_constraintTop_toBottomOf="@+id/fromtimeadd"
+        app:layout_constraintVertical_bias="0.455" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
