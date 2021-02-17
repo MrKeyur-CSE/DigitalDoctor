@@ -28,6 +28,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bar
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.login);
+        setContentView(R.layout.prescriptiondoc);
     }
 }
