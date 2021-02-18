@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "146950125704",
+    "firebase_url": "https://digital-doctor-bfc3a.firebaseio.com",
+    "project_id": "digital-doctor-bfc3a",
+    "storage_bucket": "digital-doctor-bfc3a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146950125704:android:cc8262469137f2dcb6473d",
+        "android_client_info": {
+          "package_name": "com.example.digitaldoctor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "146950125704-2uiie21k1ong5t8d5qq69hle5qe3qk4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPcJmUDc9JwXbD-nt_eSCI0UNcqN6NmBE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "146950125704-2uiie21k1ong5t8d5qq69hle5qe3qk4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
