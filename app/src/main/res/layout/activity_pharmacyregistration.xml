@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/gray"
+        android:padding="40dp"
+        tools:context=".doctoregistreation">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/digitaldoc" />
+
+        <TextView
+            android:id="@+id/regdoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="36dp"
+            android:text="Doc Register"
+            android:textColor="#253A4B"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+        <EditText
+            android:id="@+id/docname"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="28dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" Name"
+            android:inputType="textPersonName"
+            android:textColor="#253A4B"
+            app:cornerRadius="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/regdoc" />
+
+        <EditText
+            android:id="@+id/docemail"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" E-mail"
+            android:inputType="textPersonName"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docname" />
+
+        <EditText
+            android:id="@+id/docmobile"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" Mobile number"
+            android:inputType="number"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docemail" />
+
+        <EditText
+            android:id="@+id/docpass"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" Password"
+            android:inputType="textPassword"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docmobile" />
+
+        <EditText
+            android:id="@+id/docDOB"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" DD / MM / YYYY"
+            android:inputType="date"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docpass" />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="281dp"
+            android:layout_height="66dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docDOB">
+
+            <RadioButton
+                android:id="@+id/radioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_margin="10dp"
+                android:text="Male"
+                android:textSize="15dp" />
+
+            <RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="0.13"
+                android:text="Female"
+                android:textSize="15dp" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_weight="0.13"
+                android:text="other"
+                android:textSize="15dp" />
+        </RadioGroup>
+
+        <EditText
+            android:id="@+id/docdepartment"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" Pharmacy Name"
+            android:inputType="text"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+
+        <EditText
+            android:id="@+id/docSpeciality"
+            android:layout_width="244dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" Licence Number"
+            android:inputType="text"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docdepartment" />
+
+        <EditText
+            android:id="@+id/docAddress"
+            android:layout_width="245dp"
+            android:layout_height="82dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" Address"
+            android:inputType="textImeMultiLine"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docSpeciality" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text=" Timing :"
+            android:textColor="#253A4B"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/docAddress" />
+
+        <TextView
+            android:id="@+id/timeto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text=" To :"
+            android:textColor="#253A4B"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.058"
+            app:layout_constraintStart_toEndOf="@+id/time"
+            app:layout_constraintTop_toBottomOf="@+id/docAddress" />
+
+        <TextView
+            android:id="@+id/timefrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text=" From :"
+            android:textColor="#253A4B"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timeto" />
+
+        <EditText
+            android:id="@+id/timetonumber"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" time to"
+            android:inputType="time"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.183"
+            app:layout_constraintStart_toEndOf="@+id/timeto"
+            app:layout_constraintTop_toBottomOf="@+id/docAddress" />
+
+        <EditText
+            android:id="@+id/timefromnumber"
+            android:layout_width="94dp"
+            android:layout_height="31dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint=" time from"
+            android:inputType="time"
+            android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintStart_toEndOf="@+id/timefrom"
+            app:layout_constraintTop_toBottomOf="@+id/timetonumber" />
+
+        <Button
+            android:id="@+id/loginbutton"
+            android:layout_width="113dp"
+            android:layout_height="52dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="3dp"
+            android:backgroundTint="#F23B5E"
+            android:elevation="100dp"
+            android:text="Sign Up"
+            android:textSize="18sp"
+            app:cornerRadius="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/timefrom"
+            app:layout_constraintEnd_toStartOf="@+id/backtoregister"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteY="957dp" />
+
+        <TextView
+            android:id="@+id/backtoregister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="37dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginRight="50dp"
+            android:text="Back"
+            android:textColor="#11142D"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@+id/loginbutton"
+            app:layout_constraintTop_toBottomOf="@id/timefromnumber"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

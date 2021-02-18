@@ -27,21 +27,21 @@ public class RegisterActivity extends AppCompatActivity {
         mDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),));
+                startActivity(new Intent(getApplicationContext(),doctoregistreation.class));
             }
         });
 
         mPharmacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),));
+                startActivity(new Intent(getApplicationContext(),pharmacyregistration.class));
             }
         });
 
         mPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),));
+                startActivity(new Intent(getApplicationContext(),patientregistration.class));
             }
         });
 
