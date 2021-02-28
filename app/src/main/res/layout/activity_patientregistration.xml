@@ -40,7 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
         <EditText
-            android:id="@+id/docname"
+            android:id="@+id/patname"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toBottomOf="@+id/regdoc" />
 
         <EditText
-            android:id="@+id/docemail"
+            android:id="@+id/patemail"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -68,10 +68,10 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docname" />
+            app:layout_constraintTop_toBottomOf="@+id/patname" />
 
         <EditText
-            android:id="@+id/docmobile"
+            android:id="@+id/patmobile"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -83,10 +83,10 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docemail" />
+            app:layout_constraintTop_toBottomOf="@+id/patemail" />
 
         <EditText
-            android:id="@+id/docpass"
+            android:id="@+id/patpass"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -98,10 +98,10 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docmobile" />
+            app:layout_constraintTop_toBottomOf="@+id/patmobile" />
 
         <EditText
-            android:id="@+id/docDOB"
+            android:id="@+id/patDOB"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -113,11 +113,11 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docpass" />
+            app:layout_constraintTop_toBottomOf="@+id/patpass" />
 
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/patRadioGroup"
             android:layout_width="281dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
@@ -127,7 +127,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docDOB">
+            app:layout_constraintTop_toBottomOf="@+id/patDOB">
 
             <RadioButton
                 android:id="@+id/radioButton"
@@ -157,7 +157,7 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/doclicenseno"
+            android:id="@+id/patbloodgroup"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
@@ -169,10 +169,10 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/patRadioGroup" />
 
         <EditText
-            android:id="@+id/docAddress"
+            android:id="@+id/patAddress"
             android:layout_width="245dp"
             android:layout_height="82dp"
             android:layout_gravity="center"
@@ -185,7 +185,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/doclicenseno" />
+            app:layout_constraintTop_toBottomOf="@+id/patbloodgroup" />
 
         <TextView
             android:id="@+id/height"
@@ -197,7 +197,7 @@
             android:textColor="#253A4B"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/patAddress" />
 
 
         <EditText
@@ -206,6 +206,7 @@
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
+            android:layout_marginStart="24dp"
             android:background="@android:color/white"
             android:ems="10"
             android:inputType="number"
@@ -213,7 +214,7 @@
             app:layout_constraintEnd_toStartOf="@+id/cm"
             app:layout_constraintHorizontal_bias="0.771"
             app:layout_constraintStart_toEndOf="@+id/height"
-            app:layout_constraintTop_toBottomOf="@+id/docAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/patAddress" />
 
         <TextView
             android:id="@+id/cm"
@@ -225,7 +226,7 @@
             android:textColor="#253A4B"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/docAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/patAddress" />
 
         <TextView
             android:id="@+id/weight"

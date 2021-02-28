@@ -25,6 +25,7 @@
             android:layout_height="50dp"
             android:layout_marginLeft="65dp"
             android:backgroundTint="#253A4B"
+            android:textColor="@color/gray"
             android:elevation="100dp"
             android:text="Patient"
             android:textSize="14sp"
@@ -37,6 +38,7 @@
             android:layout_marginLeft="65dp"
             android:layout_marginTop="70dp"
             android:backgroundTint="#253A4B"
+            android:textColor="@color/gray"
             android:elevation="100dp"
             android:text="Doctor"
             android:textSize="14sp"
@@ -46,9 +48,10 @@
             android:id="@+id/pharmacy"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="70dp"
             android:layout_marginTop="70dp"
             android:backgroundTint="#253A4B"
+            android:textColor="@color/gray"
             android:elevation="100dp"
             android:text="Pharmacy"
             android:textSize="14sp"
@@ -69,7 +72,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.27" />
+        app:layout_constraintVertical_bias="0.417" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

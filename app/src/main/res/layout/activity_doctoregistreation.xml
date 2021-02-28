@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="36dp"
-            android:text="Doc Register"
+            android:text="Register"
             android:textColor="#253A4B"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,7 +117,7 @@
 
 
         <RadioGroup
-            android:id="@+id/radioGroup"
+            android:id="@+id/docRadioGroup"
             android:layout_width="281dp"
             android:layout_height="66dp"
             android:layout_gravity="center"
@@ -169,7 +169,7 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/docRadioGroup" />
 
         <EditText
             android:id="@+id/docdepartment"
@@ -255,7 +255,7 @@
             app:layout_constraintTop_toBottomOf="@+id/timeto" />
 
         <EditText
-            android:id="@+id/timetonumber"
+            android:id="@+id/doctimetonumber"
             android:layout_width="94dp"
             android:layout_height="31dp"
             android:layout_gravity="center"
@@ -271,7 +271,7 @@
             app:layout_constraintTop_toBottomOf="@+id/docAddress" />
 
         <EditText
-            android:id="@+id/timefromnumber"
+            android:id="@+id/doctimefromnumber"
             android:layout_width="94dp"
             android:layout_height="31dp"
             android:layout_gravity="center"
@@ -284,7 +284,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.194"
             app:layout_constraintStart_toEndOf="@+id/timefrom"
-            app:layout_constraintTop_toBottomOf="@+id/timetonumber" />
+            app:layout_constraintTop_toBottomOf="@+id/doctimetonumber" />
 
         <Button
             android:id="@+id/loginbutton"
@@ -317,7 +317,7 @@
             android:textColor="#11142D"
             android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/loginbutton"
-            app:layout_constraintTop_toBottomOf="@id/timefromnumber"
+            app:layout_constraintTop_toBottomOf="@id/doctimefromnumber"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

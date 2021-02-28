@@ -33,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         login_btn = findViewById(R.id.button);
         register_txt = findViewById(R.id.Register);
 
