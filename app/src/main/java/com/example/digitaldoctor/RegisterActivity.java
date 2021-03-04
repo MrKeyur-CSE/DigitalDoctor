@@ -2,7 +2,6 @@ package com.example.digitaldoctor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         mDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),doctoregistreation.class));
+                startActivity(new Intent(getApplicationContext(), doctoregistration.class));
             }
         });
 
