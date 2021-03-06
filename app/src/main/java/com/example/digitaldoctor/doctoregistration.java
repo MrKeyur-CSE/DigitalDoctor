@@ -47,7 +47,6 @@ public class doctoregistration extends AppCompatActivity {
 
 
 
-
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView dBack;
     private EditText dName, dEmail, dPhone, dPass, dDob, dLicense, dDept, dSpec, dAddress, dTimefrom, dTimeto;
@@ -56,8 +55,35 @@ public class doctoregistration extends AppCompatActivity {
     private Button dSignup;
     CollectionReference dRef = db.collection("Doctor");
 
-    FirebaseAuth dAuth;
+    private FirebaseAuth dAuth = FirebaseAuth.getInstance();
 
+    void Authenticate(String email, String pass){
+        if(TextUtils.isEmpty(email)){
+            dEmail.setError("Email is required");
+            return;
+        }
+        if(TextUtils.isEmpty(pass)){
+            dPass.setError("Password is required");
+            return;
+        }
+        if(pass.length()<6){
+            dPass.setError("Password must be >= 6 characters");
+            return;
+        }
+
+        dAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    startActivity(new Intent(getApplicationContext(), after_login.class));
+                }
+                else{
+                    Toast.makeText(doctoregistration.this, "Registration failed" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
 
 
 
@@ -67,10 +93,10 @@ public class doctoregistration extends AppCompatActivity {
         setContentView(R.layout.activity_doctoregistreation);
 
         dBack = findViewById(R.id.backtoregister);
-        dName = findViewById(R.id.docname);
         dEmail = findViewById(R.id.docemail);
         dPhone = findViewById(R.id.docmobile);
         dPass = findViewById(R.id.docpass);
+        dSignup = findViewById(R.id.loginbutton);
         dDob  = findViewById(R.id.docDOB);
         dLicense = findViewById(R.id.doclicenseno);
         dSpec = findViewById(R.id.docSpeciality);
@@ -79,21 +105,16 @@ public class doctoregistration extends AppCompatActivity {
         dTimefrom = findViewById(R.id.doctimefromnumber);
         dTimeto = findViewById(R.id.doctimetonumber);
         dGender = findViewById(R.id.docRadioGroup);
+        dName = findViewById(R.id.docname);
 
-        dBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
-            }
-        });
+
 
         dSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int RadioId = dGender.getCheckedRadioButtonId();
-                genderButton_d = findViewById(RadioId);
-                String name = dName.getText().toString();
-                String email = dEmail.getText().toString();
+
+                String email = dEmail.getText().toString().trim();
+                String pass = dPass.getText().toString().trim();
                 String phone = dPhone.getText().toString();
                 String dob = dDob.getText().toString();
                 String license = dLicense.getText().toString();
@@ -102,8 +123,11 @@ public class doctoregistration extends AppCompatActivity {
                 String address = dAddress.getText().toString();
                 String timefrom = dTimefrom.getText().toString();
                 String timeto = dTimeto.getText().toString();
+                int RadioId = dGender.getCheckedRadioButtonId();
+                genderButton_d = findViewById(RadioId);
                 String gender = genderButton_d.getText().toString();
-                String pass = dPass.getText().toString();
+                String name = dName.getText().toString();
+
 
                 Map<String, Object> dMap = new HashMap<>();
                 dMap.put(KEY_D_NAME, name);
@@ -132,45 +156,22 @@ public class doctoregistration extends AppCompatActivity {
                             }
                         });
 
-                if(TextUtils.isEmpty(email)){
-                    dEmail.setError("Email is required");
-                    return;
-                }
-                if(TextUtils.isEmpty(pass)){
-                    dPass.setError("Password is required");
-                    return;
-                }
-                if(pass.length()<6){
-                    dPass.setError("Password must be >= 6 characters");
-                    return;
-                }
-
-                dAuth.createUserWithEmailAndPassword(email, pass).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                    @Override
-                    public void onSuccess(AuthResult authResult) {
-                        Toast.makeText(doctoregistration.this, "Registered Successfully", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(getApplicationContext(),login.class));
-                    }
-                })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(doctoregistration.this, "Registeration Failed\n" + e.toString(), Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                    }
-                });
 
 
-
-
-
+                Authenticate(email, pass);
 
             }
         });
 
+        dBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+            }
+        });
     }
-
-
 }
+
+
+
+
