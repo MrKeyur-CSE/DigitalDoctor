@@ -30,7 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar" />                                              
         <activity android:name=".pharmacyregistration"/>
         <activity android:name=".patientregistration" />
-        <activity android:name=".doctoregistreation" />
+        <activity android:name=".doctoregistration" />
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="@color/gray"
         android:padding="40dp"
-        tools:context=".doctoregistreation">
+        tools:context=".doctoregistration">
 
         <ImageView
             android:id="@+id/imageView2"
