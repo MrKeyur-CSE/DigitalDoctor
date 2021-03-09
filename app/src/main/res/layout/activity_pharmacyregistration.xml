@@ -47,7 +47,7 @@
             android:layout_marginTop="28dp"
             android:background="@android:color/white"
             android:ems="10"
-            android:hint=" Name"
+            android:hint="Pharmacy Name"
             android:inputType="textPersonName"
             android:textColor="#253A4B"
             app:cornerRadius="30sp"
@@ -100,76 +100,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phymobile" />
 
+
         <EditText
-            android:id="@+id/phyDOB"
+            android:id="@+id/phyownname"
             android:layout_width="244dp"
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@android:color/white"
             android:ems="10"
-            android:hint=" DD / MM / YYYY"
-            android:inputType="date"
-            android:textColor="#253A4B"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phypass" />
-
-
-        <RadioGroup
-            android:id="@+id/phyRadioGroup"
-            android:layout_width="281dp"
-            android:layout_height="66dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="24dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.506"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phyDOB">
-
-            <RadioButton
-                android:id="@+id/radioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="55dp"
-                android:layout_margin="10dp"
-                android:text="Male"
-                android:textSize="15dp" />
-
-            <RadioButton
-                android:id="@+id/radioButton2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="0.13"
-                android:text="Female"
-                android:textSize="15dp" />
-
-            <RadioButton
-                android:id="@+id/radioButton3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:layout_weight="0.13"
-                android:text="other"
-                android:textSize="15dp" />
-        </RadioGroup>
-
-        <EditText
-            android:id="@+id/phyphyname"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/white"
-            android:ems="10"
-            android:hint=" Pharmacy Name"
+            android:hint=" Owner's Name"
             android:inputType="text"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phyRadioGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/phypass" />
 
         <EditText
             android:id="@+id/phylicencenumber"
@@ -184,7 +130,7 @@
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phyphyname" />
+            app:layout_constraintTop_toBottomOf="@+id/phyownname" />
 
         <EditText
             android:id="@+id/phyAddress"
@@ -251,7 +197,7 @@
             android:inputType="time"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.183"
+            app:layout_constraintHorizontal_bias="0.22"
             app:layout_constraintStart_toEndOf="@+id/timeto"
             app:layout_constraintTop_toBottomOf="@+id/phyAddress" />
 
