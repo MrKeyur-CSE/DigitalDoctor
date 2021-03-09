@@ -165,7 +165,7 @@
             android:background="@android:color/white"
             android:ems="10"
             android:hint=" Blood Group"
-            android:inputType="number"
+            android:inputType="text"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

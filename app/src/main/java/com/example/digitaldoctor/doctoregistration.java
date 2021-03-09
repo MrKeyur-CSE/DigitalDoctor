@@ -158,7 +158,7 @@ public class doctoregistration extends AppCompatActivity {
 
 
 
-                Authenticate(email, pass);
+                Authenticate(email, pass); //Firebase Authentication
 
             }
         });
@@ -166,7 +166,7 @@ public class doctoregistration extends AppCompatActivity {
         dBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+                finish();
             }
         });
     }
