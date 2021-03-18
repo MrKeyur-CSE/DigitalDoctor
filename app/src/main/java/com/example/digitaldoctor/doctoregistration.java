@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,37 +54,10 @@ public class doctoregistration extends AppCompatActivity {
     private RadioGroup dGender;
     private RadioButton genderButton_d;
     private Button dSignup;
-    CollectionReference dRef = db.collection("Doctor");
+
+    String UserId;
 
     private FirebaseAuth dAuth = FirebaseAuth.getInstance();
-
-    void Authenticate(String email, String pass){
-        if(TextUtils.isEmpty(email)){
-            dEmail.setError("Email is required");
-            return;
-        }
-        if(TextUtils.isEmpty(pass)){
-            dPass.setError("Password is required");
-            return;
-        }
-        if(pass.length()<6){
-            dPass.setError("Password must be >= 6 characters");
-            return;
-        }
-
-        dAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    startActivity(new Intent(getApplicationContext(), after_login.class));
-                }
-                else{
-                    Toast.makeText(doctoregistration.this, "Registration failed" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-    }
 
 
 
@@ -128,37 +102,59 @@ public class doctoregistration extends AppCompatActivity {
                 String gender = genderButton_d.getText().toString();
                 String name = dName.getText().toString();
 
+                if(TextUtils.isEmpty(email)){
+                    dEmail.setError("Email is required");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass)){
+                    dPass.setError("Password is required");
+                    return;
+                }
+                if(pass.length()<6){
+                    dPass.setError("Password must be >= 6 characters");
+                    return;
+                }
 
-                Map<String, Object> dMap = new HashMap<>();
-                dMap.put(KEY_D_NAME, name);
-                dMap.put(KEY_D_EMAIL, email);
-                dMap.put(KEY_D_PHONE, phone);
-                dMap.put(KEY_D_DOB, dob);
-                dMap.put(KEY_D_LICENSE, license);
-                dMap.put(KEY_D_DEPART, dept);
-                dMap.put(KEY_D_SPEC, spec);
-                dMap.put(KEY_D_ADDRESS, address);
-                dMap.put(KEY_D_TIME_FROM, timefrom);
-                dMap.put(KEY_D_TIME_TO, timeto);
-                dMap.put(KEY_D_GENDER, gender);
-
-                dRef.add(dMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                dAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(doctoregistration.this, "New User saved as Doctor", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            UserId = dAuth.getCurrentUser().getUid();
+                            DocumentReference dRef = db.collection("Doctor").document(UserId);
+                            Map<String, Object> dMap = new HashMap<>();
+                            dMap.put(KEY_D_NAME, name);
+                            dMap.put(KEY_D_EMAIL, email);
+                            dMap.put(KEY_D_PHONE, phone);
+                            dMap.put(KEY_D_DOB, dob);
+                            dMap.put(KEY_D_LICENSE, license);
+                            dMap.put(KEY_D_DEPART, dept);
+                            dMap.put(KEY_D_SPEC, spec);
+                            dMap.put(KEY_D_ADDRESS, address);
+                            dMap.put(KEY_D_TIME_FROM, timefrom);
+                            dMap.put(KEY_D_TIME_TO, timeto);
+                            dMap.put(KEY_D_GENDER, gender);
+
+                            dRef.set(dMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(doctoregistration.this, "New User saved as Doctor", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(doctoregistration.this, "Registration failed\n" + e.toString(), Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, e.toString());
+                                        }
+                                    });
+
+                            startActivity(new Intent(getApplicationContext(), after_login.class));
+                        }
+                        else{
+                            Toast.makeText(doctoregistration.this, "Registration failed" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        }
                     }
-                })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(doctoregistration.this, "Registration failed\n" + e.toString(), Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, e.toString());
-                            }
-                        });
-
-
-
-                Authenticate(email, pass); //Firebase Authentication
+                });
 
             }
         });

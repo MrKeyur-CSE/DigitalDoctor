@@ -50,35 +50,10 @@ public class patientregistration extends AppCompatActivity {
     private RadioGroup pGender, pDiet;
     private RadioButton genderbutton_p, dietbutton_p;
     private Button pSignup;
-    CollectionReference pRef = db.collection("Patient");
+
+    String UserId;
 
     private FirebaseAuth pAuth = FirebaseAuth.getInstance();
-
-    void Authenticate(String email, String pass) {
-        if (TextUtils.isEmpty(email)) {
-            pEmail.setError("Email is required");
-            return;
-        }
-        if (TextUtils.isEmpty(pass)) {
-            pPass.setError("Password is required");
-            return;
-        }
-        if (pass.length() < 6) {
-            pPass.setError("Password must be >= 6 characters");
-            return;
-        }
-
-        pAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    startActivity(new Intent(getApplicationContext(), after_login.class));
-                } else {
-                    Toast.makeText(patientregistration.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
 
 
     @Override
@@ -120,35 +95,57 @@ public class patientregistration extends AppCompatActivity {
                 dietbutton_p = findViewById(DietId);
                 String diet = dietbutton_p.getText().toString();
 
-                Map<String, Object> pMap = new HashMap<>();
-                pMap.put(KEY_P_NAME, name);
-                pMap.put(KEY_P_EMAIL, email);
-                pMap.put(KEY_P_PHONE, phone);
-                pMap.put(KEY_P_DOB, dob);
-                pMap.put(KEY_P_BLOOD, blood);
-                pMap.put(KEY_P_ADDRESS, address);
-                pMap.put(KEY_P_HEIGHT, height);
-                pMap.put(KEY_P_WEIGHT, weight);
-                pMap.put(KEY_P_GENDER, gender);
-                pMap.put(KEY_P_DIET, diet);
+                if (TextUtils.isEmpty(email)) {
+                    pEmail.setError("Email is required");
+                    return;
+                }
+                if (TextUtils.isEmpty(pass)) {
+                    pPass.setError("Password is required");
+                    return;
+                }
+                if (pass.length() < 6) {
+                    pPass.setError("Password must be >= 6 characters");
+                    return;
+                }
 
-                pRef.add(pMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                pAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(patientregistration.this, "New User saved as Patient", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            UserId = pAuth.getCurrentUser().getUid();
+                            DocumentReference pRef = db.collection("Patient").document(UserId);
+                            Map<String, Object> pMap = new HashMap<>();
+                            pMap.put(KEY_P_NAME, name);
+                            pMap.put(KEY_P_EMAIL, email);
+                            pMap.put(KEY_P_PHONE, phone);
+                            pMap.put(KEY_P_DOB, dob);
+                            pMap.put(KEY_P_BLOOD, blood);
+                            pMap.put(KEY_P_ADDRESS, address);
+                            pMap.put(KEY_P_HEIGHT, height);
+                            pMap.put(KEY_P_WEIGHT, weight);
+                            pMap.put(KEY_P_GENDER, gender);
+                            pMap.put(KEY_P_DIET, diet);
+
+                            pRef.set(pMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(patientregistration.this, "New User saved as Patient", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(patientregistration.this, "Registration failed\n" + e.toString(), Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, e.toString());
+                                        }
+                                    });
+
+                            startActivity(new Intent(getApplicationContext(), after_login.class));
+                        } else {
+                            Toast.makeText(patientregistration.this, "Registration failed" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
                     }
-                })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(patientregistration.this, "Registration failed\n" + e.toString(), Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, e.toString());
-                            }
-                        });
-
-
-                Authenticate(email, pass); //Firebase Authentication
-
+                });
             }
         });
 
