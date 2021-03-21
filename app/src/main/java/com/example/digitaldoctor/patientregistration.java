@@ -125,6 +125,7 @@ public class patientregistration extends AppCompatActivity {
                             pMap.put(KEY_P_WEIGHT, weight);
                             pMap.put(KEY_P_GENDER, gender);
                             pMap.put(KEY_P_DIET, diet);
+                            pMap.put("tag", "patient");
 
                             pRef.set(pMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

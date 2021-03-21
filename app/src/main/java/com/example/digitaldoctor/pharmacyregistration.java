@@ -108,6 +108,7 @@ public class pharmacyregistration extends AppCompatActivity {
                             phMap.put(KEY_PH_TIME_FROM, timefrom);
                             phMap.put(KEY_PH_TIME_TO, timeto);
                             phMap.put(KEY_PH_OWNER, owner_name);
+                            phMap.put("tag", "pharmacy");
 
                             phRef.set(phMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
