@@ -17,14 +17,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class login extends AppCompatActivity {
 
     EditText mEmail, mPassword;
     Button mLogin;
-    TextView mRegister;
+    TextView mRegister, mBack;
     FirebaseAuth mAuth;
-
+    String UserId;
+    FirebaseFirestore mStore;
 
 
     @Override
@@ -37,7 +39,9 @@ public class login extends AppCompatActivity {
         mPassword = findViewById(R.id.login_password);
         mLogin = findViewById(R.id.loginbutton);
         mRegister = findViewById(R.id.Register);
+        mBack = findViewById(R.id.back);
         mAuth = FirebaseAuth.getInstance();
+        mStore = FirebaseFirestore.getInstance();
 
         mLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,7 +67,8 @@ public class login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(login.this, "Logged In",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),after_login.class));
+                            UserId = mAuth.getCurrentUser().getUid();
+                            startActivity(new Intent(getApplicationContext(),patientHome.class));
                         }else{
                             Toast.makeText(login.this, "Error!\n"+ task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
@@ -77,6 +82,13 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
+            }
+        });
+
+        mBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

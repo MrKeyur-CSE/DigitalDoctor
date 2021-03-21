@@ -46,38 +46,7 @@ public class pharmacyregistration extends AppCompatActivity {
     private Button phSignup;
     private FirebaseAuth phAuth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference phRef = db.collection("Pharmacy");
-
-
-    void Authenticate(String email, String pass){
-        if(TextUtils.isEmpty(email)){
-            phEmail.setError("Email is required");
-            return;
-        }
-        if(TextUtils.isEmpty(pass)){
-            phPass.setError("Password is required");
-            return;
-        }
-        if(pass.length()<6){
-            phPass.setError("Password must be >= 6 characters");
-            return;
-        }
-
-        phAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    startActivity(new Intent(getApplicationContext(), after_login.class));
-                }
-                else{
-                    Toast.makeText(pharmacyregistration.this, "Registration failed" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-    }
-
-
+    String UserId;
 
 
 
@@ -111,37 +80,59 @@ public class pharmacyregistration extends AppCompatActivity {
                 String pharmacy_name = phName.getText().toString();
                 String owner_name = phOwner.getText().toString();
 
-                Map<String, Object> phMap = new HashMap<>();
-                phMap.put(KEY_PH_NAME, pharmacy_name);
-                phMap.put(KEY_PH_EMAIL, email);
-                phMap.put(KEY_PH_PHONE, phone);
-                phMap.put(KEY_PH_LICENSE, license);
-                phMap.put(KEY_PH_ADDRESS, address);
-                phMap.put(KEY_PH_TIME_FROM, timefrom);
-                phMap.put(KEY_PH_TIME_TO, timeto);
-                phMap.put(KEY_PH_OWNER, owner_name);
+                if(TextUtils.isEmpty(email)){
+                    phEmail.setError("Email is required");
+                    return;
+                }
+                if(TextUtils.isEmpty(pass)){
+                    phPass.setError("Password is required");
+                    return;
+                }
+                if(pass.length()<6){
+                    phPass.setError("Password must be >= 6 characters");
+                    return;
+                }
 
-                phRef.add(phMap).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                phAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(pharmacyregistration.this, "New Pharmacy added", Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            UserId = phAuth.getCurrentUser().getUid();
+                            DocumentReference phRef = db.collection("Pharmacy").document(UserId);
+                            Map<String, Object> phMap = new HashMap<>();
+                            phMap.put(KEY_PH_NAME, pharmacy_name);
+                            phMap.put(KEY_PH_EMAIL, email);
+                            phMap.put(KEY_PH_PHONE, phone);
+                            phMap.put(KEY_PH_LICENSE, license);
+                            phMap.put(KEY_PH_ADDRESS, address);
+                            phMap.put(KEY_PH_TIME_FROM, timefrom);
+                            phMap.put(KEY_PH_TIME_TO, timeto);
+                            phMap.put(KEY_PH_OWNER, owner_name);
+                            phMap.put("tag", "pharmacy");
+
+                            phRef.set(phMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(pharmacyregistration.this, "New Pharmacy Added", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(pharmacyregistration.this, "Registration failed\n" + e.toString(), Toast.LENGTH_SHORT).show();
+                                            Log.d(TAG, e.toString());
+                                        }
+                                    });
+
+                            startActivity(new Intent(getApplicationContext(), after_login.class));
+                        }
+                        else{
+                            Toast.makeText(pharmacyregistration.this, "Registration failed" + task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        }
                     }
-                })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(pharmacyregistration.this, "Registration failed\n" + e.toString(), Toast.LENGTH_SHORT).show();
-                                Log.d(TAG, e.toString());
-                            }
-                        });
-
-
-                Authenticate(email, pass); //Firebase Authentication
+                });
             }
         });
-
-
-
 
 
         phBack.setOnClickListener(new View.OnClickListener() {
