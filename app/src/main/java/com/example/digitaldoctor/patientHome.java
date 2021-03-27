@@ -25,7 +25,7 @@ public class patientHome extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_home);
 
-        pName = findViewById(R.id.pName);
+
         pAuth = FirebaseAuth.getInstance();
         pStore = FirebaseFirestore.getInstance();
 

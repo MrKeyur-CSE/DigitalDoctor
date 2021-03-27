@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.digitaldoctor">
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -9,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".patientHome"></activity>
+        <activity android:name=".doctor_home"></activity>
+        <activity android:name=".patientHome" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -31,6 +34,7 @@
         <activity android:name=".pharmacyregistration" />
         <activity android:name=".patientregistration" />
         <activity android:name=".doctoregistration" />
+        <activity android:name=".Scanned_qr" />
     </application>
 
 </manifest>
