@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         register_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),Scanned_qr.class));
+                startActivity(new Intent(getApplicationContext(),RegisterActivity.class));
             }
         });
     }
