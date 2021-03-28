@@ -133,7 +133,7 @@ public class doctoregistration extends AppCompatActivity {
                             dMap.put(KEY_D_TIME_FROM, timefrom);
                             dMap.put(KEY_D_TIME_TO, timeto);
                             dMap.put(KEY_D_GENDER, gender);
-                            dMap.put("tag", "doctor");
+                            //dMap.put("tag", "doctor");
 
                             dRef.set(dMap).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

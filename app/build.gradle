@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
 
     def camerax_version = "1.0.0-beta12"
     // The following line is optional, as the core library is included indirectly by camera-camera2

@@ -11,6 +11,7 @@
         android:id="@+id/loginbutton"
         android:layout_width="132dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="208dp"
         android:backgroundTint="#F23B5E"
         android:elevation="100dp"
         android:text="Log in"
@@ -20,8 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password"
-        app:layout_constraintVertical_bias="0.178" />
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:layout_constraintVertical_bias="0.976" />
 
     <EditText
         android:id="@+id/login_password"
@@ -56,15 +57,16 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="228dp"
         android:text="Back"
         android:textColor="#11142D"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.31"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toEndOf="@+id/loginbutton"
-        app:layout_constraintTop_toBottomOf="@+id/login_password"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintTop_toBottomOf="@+id/category"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/notregister"
@@ -91,5 +93,60 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.351"
         app:layout_constraintStart_toEndOf="@+id/notregister" />
+
+    <RadioGroup
+        android:id="@+id/category"
+        android:layout_width="366dp"
+        android:layout_height="87dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="36dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="-0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password"
+        app:layout_constraintVertical_bias="0.068">
+
+        <RadioButton
+            android:id="@+id/asDoc"
+            android:layout_width="88dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Doctor"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/asPat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Patient"
+            android:textSize="15dp" />
+
+        <RadioButton
+            android:id="@+id/asPha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Pharmacy"
+            android:textSize="15dp" />
+
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/loginas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login as: "
+        app:layout_constraintBottom_toTopOf="@+id/category"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password"
+        app:layout_constraintVertical_bias="0.756"
+        android:textSize="18dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
