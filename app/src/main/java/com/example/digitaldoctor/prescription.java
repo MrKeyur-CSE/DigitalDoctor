@@ -1,6 +1,7 @@
 package com.example.digitaldoctor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -16,6 +17,7 @@ import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -23,28 +25,43 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import static androidx.appcompat.app.AlertDialog.*;
 
 public class prescription extends AppCompatActivity {
     // Write a message to the database
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("record");
+    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //DatabaseReference myRef = database.getReference("record");
+    FirebaseFirestore fRef = FirebaseFirestore.getInstance();
+    CollectionReference cRef = fRef.collection("Prescription");
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    String uid_doc;
+    String doctorName;
+    CollectionReference dRef = fRef.collection("Doctor");
     DataObj dataObj = new DataObj();
     Button btnloginbutton;
-    EditText discription,ill,p1,p2,p3,p4;
+    EditText discription,ill,p1,p2,p3,p4, date;
     long dpriscriptionNo = 0;
     @SuppressLint("SimpleDateFormat")
     SimpleDateFormat datePatternformat = new SimpleDateFormat("dd-mm-yyyy hh:mm a");
@@ -52,6 +69,7 @@ public class prescription extends AppCompatActivity {
     private TextView back_txt;
     private TextView log_txt;
     String sName="Download";
+    private int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +77,18 @@ public class prescription extends AppCompatActivity {
 //        getSupportActionBar().hide(); // hide the title bar
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prescription);
-        callFindViewById();
-        callOnclickListener();
+        btnloginbutton = findViewById(R.id.loginbutton);
+        p1 = findViewById(R.id.prescription_1);
+        p2 = findViewById(R.id.prescription_2);
+        p3 = findViewById(R.id.prescription_3);
+        p4 = findViewById(R.id.prescription_4);
+        ill = findViewById(R.id.name);
+        discription = findViewById(R.id.details);
+        date = findViewById(R.id.editTextDate_1);
+        uid_doc = fAuth.getCurrentUser().getUid();
 
-        myRef.addValueEventListener(new ValueEventListener() {
+
+        /*myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 dpriscriptionNo = snapshot.getChildrenCount();
@@ -70,7 +96,20 @@ public class prescription extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(prescription.this, "Error" + error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });*/
 
+        cRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (DocumentSnapshot document : task.getResult()) {
+                        count++;
+                    }
+                }else{
+                    Toast.makeText(prescription.this, "Error" + task.getException().toString(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -80,7 +119,7 @@ public class prescription extends AppCompatActivity {
         back_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
             }
         });
 
@@ -90,22 +129,30 @@ public class prescription extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),history_log.class));
             }
         });
-    }
 
-    private void callOnclickListener() {
+
+        cRef.document(uid_doc).addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                doctorName = documentSnapshot.getString("full_name").toString();
+            }
+        });
+
         btnloginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                dataObj.prescriptionNo = dpriscriptionNo + 1;
+            public void onClick(View view) {
+                dataObj.prescriptionNo = count + 1;
                 dataObj.ill = String.valueOf(ill.getText());
                 dataObj.p1 = String.valueOf(p1.getText());
                 dataObj.p2 = String.valueOf(p2.getText());
                 dataObj.p3 = String.valueOf(p3.getText());
                 dataObj.p4 = String.valueOf(p4.getText());
                 dataObj.discription = String.valueOf(discription.getText());
-                dataObj.date = new Date().getTime();
+                dataObj.date =String.valueOf(date.getText());
 
-                myRef.child(String.valueOf(dpriscriptionNo+1)).setValue(dataObj);
+                cRef.document(String.valueOf(count+1)).set(dataObj);
+
+//                myRef.child(String.valueOf(count+1)).setValue(dataObj);
 
                 try {
                     printPdf();
@@ -115,8 +162,8 @@ public class prescription extends AppCompatActivity {
                 //9822204910 9767177341 hp service
             }
         });
-
     }
+
 
     private void printPdf() throws IOException {
         PdfDocument myPdfDocument = new PdfDocument();
@@ -141,7 +188,7 @@ public class prescription extends AppCompatActivity {
         canvas.drawText("Patient Name : ",20,80,paint);
         canvas.drawLine(20,90,230,90,forLinePaint);
 
-        canvas.drawText("By Dr. Nirmal Mehta",20,105,paint);
+        canvas.drawText("By Dr." +doctorName,20,105,paint);
 
         canvas.drawText("Illness : "+ill.getText(),20,125,paint);
         canvas.drawText("Prescription : ",20,145,paint);
@@ -149,13 +196,14 @@ public class prescription extends AppCompatActivity {
         canvas.drawText(" "+p2.getText(),100,155,paint);
         canvas.drawText(" "+p3.getText(),100,165,paint);
         canvas.drawText(" "+p4.getText(),100,175,paint);
-        canvas.drawText("Discription : ",20,195,paint);
+        canvas.drawText("Description : ",20,195,paint);
         canvas.drawText(" "+discription.getText(),20,205,paint);
 
         canvas.drawLine(20,210,230,210,forLinePaint);
 
-        canvas.drawText("Date : "+datePatternformat.format(new Date().getTime()),20,260,paint);
-        canvas.drawText(String.valueOf(dpriscriptionNo+1),20,275,paint);
+       // canvas.drawText("Date : "+datePatternformat.format(new Date().getTime()),20,260,paint);
+        canvas.drawText("Date : "+String.valueOf(dataObj.date),20,260,paint);
+        canvas.drawText(String.valueOf(count+1),20,275,paint);
         canvas.drawText("Payment Method : Cash",20,290,paint);
 
         paint.setTextAlign(Paint.Align.CENTER);
@@ -174,7 +222,7 @@ public class prescription extends AppCompatActivity {
         }
         */
 
-        File file = new File(Environment.getExternalStorageDirectory() + "/Download/Prescription_"+String.valueOf(dpriscriptionNo+1)+".pdf");
+        File file = new File(Environment.getExternalStorageDirectory() + "/Download/Prescription_"+String.valueOf(count+1)+".pdf");
 
         try {
             myPdfDocument.writeTo(new FileOutputStream(file));
@@ -229,14 +277,4 @@ public class prescription extends AppCompatActivity {
         }
     }
 */
-
-    private void callFindViewById() {
-        btnloginbutton = findViewById(R.id.loginbutton);
-        p1 = findViewById(R.id.prescription_1);
-        p2 = findViewById(R.id.prescription_2);
-        p3 = findViewById(R.id.prescription_3);
-        p4 = findViewById(R.id.prescription_4);
-        ill = findViewById(R.id.name);
-        discription = findViewById(R.id.details);
-    }
 }
