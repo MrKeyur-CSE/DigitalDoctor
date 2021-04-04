@@ -2,7 +2,7 @@ package com.example.digitaldoctor;
 
 public class DataObj {
     long prescriptionNo;
-    long date;
+    String date;
 
     String discription;
     String ill;
@@ -14,11 +14,11 @@ public class DataObj {
     public DataObj() {
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

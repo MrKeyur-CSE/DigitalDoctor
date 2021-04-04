@@ -89,7 +89,7 @@ public class login extends AppCompatActivity {
                                         if (document.exists()) {
                                             //Toast.makeText(login.this, "Welcome "+cat, Toast.LENGTH_SHORT).show();
                                             if (cat.equals("Patient")){
-                                                Toast.makeText(login.this, "Test "+cat, Toast.LENGTH_SHORT).show();
+//                                                Toast.makeText(login.this, "Test "+cat, Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(getApplicationContext(),patientHome.class));
                                             }
                                             else if(cat.equals("Doctor")){
