@@ -68,7 +68,7 @@ public class prescription extends AppCompatActivity {
 
     private TextView back_txt;
     private TextView log_txt;
-    String sName="Download";
+    //String sName="Download";
     private int count = 0;
 
     @Override
@@ -134,7 +134,7 @@ public class prescription extends AppCompatActivity {
         cRef.document(uid_doc).addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                doctorName = documentSnapshot.getString("full_name").toString();
+                doctorName = documentSnapshot.getString("full_name");
             }
         });
 

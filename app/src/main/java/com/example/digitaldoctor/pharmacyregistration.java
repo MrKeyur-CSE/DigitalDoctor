@@ -124,7 +124,7 @@ public class pharmacyregistration extends AppCompatActivity {
                                         }
                                     });
 
-                            startActivity(new Intent(getApplicationContext(), after_login.class));
+                            startActivity(new Intent(getApplicationContext(), login.class));
                         }
                         else{
                             Toast.makeText(pharmacyregistration.this, "Registration failed" + task.getException().getMessage(),Toast.LENGTH_LONG).show();

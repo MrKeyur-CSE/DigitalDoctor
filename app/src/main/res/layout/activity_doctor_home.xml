@@ -8,7 +8,7 @@
     tools:context=".doctor_home">
 
     <TextView
-        android:id="@+id/back"
+        android:id="@+id/docbacktologin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -21,13 +21,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/gotoinfo"
         android:layout_width="20dp"
         android:layout_height="17dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.912"
-        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintStart_toEndOf="@+id/docbacktologin"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_ionic" />
 
