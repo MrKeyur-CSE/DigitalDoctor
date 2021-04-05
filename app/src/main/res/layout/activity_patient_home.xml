@@ -82,11 +82,11 @@
         android:layout_marginEnd="56dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView6"
+        app:layout_constraintEnd_toStartOf="@+id/log"
         app:srcCompat="@drawable/diet" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/log"
         android:layout_width="42dp"
         android:layout_height="50dp"
         android:layout_marginEnd="60dp"

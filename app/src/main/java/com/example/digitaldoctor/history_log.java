@@ -1,6 +1,7 @@
 package com.example.digitaldoctor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
@@ -25,9 +26,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.zxing.WriterException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
@@ -36,6 +44,9 @@ public class history_log extends AppCompatActivity {
 
     private TextView back_txt;
     private ListView listView;
+    private List<String> nameList = new ArrayList<>();
+    final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
+    CollectionReference dRef = pStore.collection("Prescription");
     ImageView imageView;
     Dialog myDialog;
     Bitmap img;
@@ -61,44 +72,67 @@ public class history_log extends AppCompatActivity {
             }
         });
 
-        final ArrayList<String> list = new ArrayList<>();
-        final ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.list_item, list);
-        listView.setAdapter(adapter);
-
+//        final ArrayList<String> list = new ArrayList<>();
+//        final ArrayAdapter adapter = new ArrayAdapter<String>(this,R.layout.list_item, list);
+//        listView.setAdapter(adapter);
+//
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //Log.d(TAG,OnItemClick)
-                String s1 = list.get(position);
+                String s1 = nameList.get(position);
                 //Toast.makeText(getApplicationContext(),"You click "+ s1,Toast.LENGTH_SHORT).show();
 
                 QRGEncoder qrgEncoder = new QRGEncoder(s1,null,QRGContents.Type.TEXT,400);
                 Bitmap qrBits = qrgEncoder.getBitmap();
                 img = qrBits;
                 ShowPopup(this);
-
-
             }
         });
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("record");
-        reference.addValueEventListener(new ValueEventListener() {
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("record");
+//        reference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                list.clear();
+//                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+//                    Information info = snapshot.getValue(Information.class);
+//                    String txt = "Prescription No : "+ info.getPrescriptionNo() + "\nIllness : " + info.getIll()
+//                            + "\nMedication : \n - " + info.getP1() + "\n - " + info.getP2() + "\n - " + info.getP3()
+//                            + "\n - " + info.getP4();
+//                    list.add(txt);
+//                }
+//                adapter.notifyDataSetChanged();
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+        pStore.collection("Prescription").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                list.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    Information info = snapshot.getValue(Information.class);
-                    String txt = "Prescription No : "+ info.getPrescriptionNo() + "\nIllness : " + info.getIll()
-                            + "\nMedication : \n - " + info.getP1() + "\n - " + info.getP2() + "\n - " + info.getP3()
-                            + "\n - " + info.getP4();
-                    list.add(txt);
+            public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
+                nameList.clear();
+                for (DocumentSnapshot snapshot : documentSnapshots){
+                    String description = snapshot.getString("discription");
+//                    String date = snapshot.getString("date");
+                    String ill = snapshot.getString("ill");
+                    String p1 = snapshot.getString("p1");
+                    String p2 = snapshot.getString("p2");
+                    String p3 = snapshot.getString("p3");
+                    String p4 = snapshot.getString("p4");
+                    Long prescriptionNo = snapshot.getLong("prescriptionNo");
+                    String text = "Prescription No : "+prescriptionNo+  "\nIllness : " + ill
+                            + "\nMedication : \n - " + p1 + "\n - " + p2 + "\n - " + p3
+                            + "\n - " + p4 + "\nDescription : " + description;
+                    nameList.add(text);
+
+                    //nameList.add(snapshot.getString("p1"));
                 }
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+                final ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.list_item, nameList);
+                listView.setAdapter(adapter);
             }
         });
     }

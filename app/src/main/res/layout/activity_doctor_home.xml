@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:fontFamily="@font/poppins_semibold"
-        android:text="Home"
+        android:text="Patients List"
         android:textColor="#253A4B"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,19 +45,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="Recent Patients"
-        android:textColor="@color/colorAccent"
-        android:textSize="25sp"
+    <ListView
+        android:id="@+id/listofdoctor"
+        android:layout_width="386dp"
+        android:layout_height="561dp"
+        android:divider="@color/black"
+        android:dividerHeight="3dp"
+        android:listSelector="@color/gray"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarThumbVertical="@color/gray"
+        android:text="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.164"
+        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.617" />
 
     <ImageView
         android:id="@+id/add"

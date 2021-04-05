@@ -19,13 +19,14 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="132dp"
-        android:layout_height="60dp"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
         android:backgroundTint="#F23B5E"
         android:elevation="100dp"
         android:text="Log in"
         android:textSize="18sp"
         app:cornerRadius="24dp"
+        android:background="@drawable/custom_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"

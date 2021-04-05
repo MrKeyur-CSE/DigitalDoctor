@@ -37,6 +37,7 @@ import androidmads.library.qrgenearator.QRGEncoder;
 public class patientHome extends AppCompatActivity {
 
     private TextView patientbacktologin;
+    private ImageView log;
     private ListView listView;
     private List<String> nameList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
@@ -75,6 +76,14 @@ public class patientHome extends AppCompatActivity {
                 }
                 ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item,nameList);
                 listView.setAdapter(adapter);
+            }
+        });
+
+        log = findViewById(R.id.log);
+        log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),history_log.class));
             }
         });
     }

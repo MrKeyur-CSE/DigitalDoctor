@@ -16,7 +16,8 @@
             android:layout_marginTop="14dp"
             android:text="Back"
             android:textColor="#F23B5E"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:paddingStart="16dp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -26,16 +27,23 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Information "
             android:textColor="#253A4B"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            android:paddingStart="16dp"/>
 
 
     <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        tools:ignore="MissingConstraints">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:stretchColumns="*"
+        android:shrinkColumns="*">
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/name"
@@ -51,12 +59,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="TextView"
+                android:ems="5"
                 android:textSize="25sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/Email"
@@ -72,10 +84,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="TextView"
+                android:ems="5"
                 android:textSize="25sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/bloodgroup"
@@ -92,10 +110,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="TextView"
+                android:ems="6"
                 android:textSize="25sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/mob"
@@ -111,10 +135,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="TextView"
+                android:ems="5"
                 android:textSize="25sp" />
         </TableRow>
 
-        <TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <TextView
                 android:id="@+id/diet"
@@ -130,7 +160,27 @@
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:text="TextView"
+                android:ems="5"
                 android:textSize="25sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingTop="30dp">
+
+            <Button
+                android:id="@+id/loginbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#F23B5E"
+                android:elevation="100dp"
+                android:background="@drawable/custom_button"
+                android:text="Log Out"
+                android:textSize="18sp"
+                app:cornerRadius="24dp"/>
+
         </TableRow>
 
     </TableLayout>
