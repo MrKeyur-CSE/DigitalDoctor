@@ -64,7 +64,7 @@
         app:srcCompat="@drawable/icon_ionic" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/search"
         android:layout_width="42dp"
         android:layout_height="50dp"
         android:layout_marginStart="48dp"

@@ -14,13 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".patient_home_info"></activity>
+        <activity android:name=".searchdoctor"></activity>
+        <activity android:name=".patient_home_info" />
         <activity android:name=".doc_home_info" />
         <activity android:name=".history_log" />
         <activity android:name=".prescription" />
         <activity android:name=".doctor_home" />
-        <activity android:name=".patientHome" >
-        </activity>
+        <activity android:name=".patientHome"></activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
