@@ -6,12 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -31,6 +34,7 @@ public class doctor_home extends AppCompatActivity {
     private List<String> nameList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
     CollectionReference dRef = pStore.collection("Patient");
+    private String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,6 @@ public class doctor_home extends AppCompatActivity {
         });
 
         listView = findViewById(R.id.listofdoctor);
-
         pStore.collection("Patient").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
@@ -75,6 +78,18 @@ public class doctor_home extends AppCompatActivity {
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item,nameList);
                 listView.setAdapter(adapter);
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String s1 = nameList.get(position);
+                Toast.makeText(getApplicationContext(),"You click "+ s1, Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(doctor_home.this,prescription.class);
+                i.putExtra("Name",s1);
+                startActivity(i);
+//                startActivity(new Intent(getApplicationContext(),prescription.class));
             }
         });
 

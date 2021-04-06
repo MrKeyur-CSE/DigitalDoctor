@@ -33,6 +33,7 @@
         android:layout_height="match_parent"
         android:divider="@color/black"
         android:dividerHeight="3dp"
+        android:layout_margin="20dp"
         android:listSelector="@color/gray"
         android:scrollbarStyle="insideOverlay"
         android:scrollbarThumbVertical="@color/gray"

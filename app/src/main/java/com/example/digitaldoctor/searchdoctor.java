@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,6 +31,7 @@ public class searchdoctor extends AppCompatActivity {
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
     CollectionReference dRef = pStore.collection("Doctor");
     SearchView searchdoctor;
+    String s1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,23 +55,35 @@ public class searchdoctor extends AppCompatActivity {
                 for (DocumentSnapshot snapshot : documentSnapshots) {
                     nameList.add(snapshot.getString("full_name"));
                 }
-                nameList = new ArrayList<String>();
+                //nameList = new ArrayList<String>();
                 listView.setAdapter(adapter);
             }
         });
 
 
         searchdoctor = findViewById(R.id.searchdoctor);
-        searchdoctor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
 
+//        searchdoctor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.getFilter().filter(newText);
+//                return false;
+//            }
+//        });
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.getFilter().filter(newText);
-                return false;
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                s1 = nameList.get(position);
+                Toast.makeText(getApplicationContext(),"This is "+ s1,Toast.LENGTH_SHORT).show();
+//                ShowPopup(this);
             }
         });
     }

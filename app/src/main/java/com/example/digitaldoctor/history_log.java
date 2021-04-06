@@ -47,7 +47,6 @@ public class history_log extends AppCompatActivity {
     private List<String> nameList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
     CollectionReference dRef = pStore.collection("Prescription");
-    ImageView imageView;
     Dialog myDialog;
     Bitmap img;
 
@@ -63,12 +62,10 @@ public class history_log extends AppCompatActivity {
 
         back_txt = findViewById(R.id.back);
         listView = findViewById(R.id.list);
-        imageView = findViewById(R.id.popimage);
 
         back_txt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),prescription.class));
+            public void onClick(View view) { finish();
             }
         });
 

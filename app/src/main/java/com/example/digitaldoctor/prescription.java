@@ -34,6 +34,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -46,6 +47,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Objects;
 
 import static androidx.appcompat.app.AlertDialog.*;
 
@@ -57,7 +59,7 @@ public class prescription extends AppCompatActivity {
     CollectionReference cRef = fRef.collection("Prescription");
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String uid_doc;
-    String doctorName;
+    private String doc_name;
     CollectionReference dRef = fRef.collection("Doctor");
     DataObj dataObj = new DataObj();
     Button btnloginbutton;
@@ -86,6 +88,7 @@ public class prescription extends AppCompatActivity {
         discription = findViewById(R.id.details);
         date = findViewById(R.id.editTextDate_1);
         uid_doc = fAuth.getCurrentUser().getUid();
+        DocumentReference pReff = fRef.collection("Doctor").document(uid_doc);
 
 
         /*myRef.addValueEventListener(new ValueEventListener() {
@@ -130,11 +133,10 @@ public class prescription extends AppCompatActivity {
             }
         });
 
-
-        cRef.document(uid_doc).addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+        pReff.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                doctorName = documentSnapshot.getString("full_name");
+                doc_name = documentSnapshot.getString("full_name");
             }
         });
 
@@ -166,6 +168,8 @@ public class prescription extends AppCompatActivity {
 
 
     private void printPdf() throws IOException {
+        Intent i = getIntent();
+        String s = i.getStringExtra("Name");
         PdfDocument myPdfDocument = new PdfDocument();
         Paint paint = new Paint();
         Paint forLinePaint = new Paint();
@@ -185,10 +189,10 @@ public class prescription extends AppCompatActivity {
         forLinePaint.setStrokeWidth(2);
         canvas.drawLine(20,65,230,65,forLinePaint);
 
-        canvas.drawText("Patient Name : ",20,80,paint);
+        canvas.drawText("Patient Name : "+ s,20,80,paint);
         canvas.drawLine(20,90,230,90,forLinePaint);
 
-        canvas.drawText("By Dr." +doctorName,20,105,paint);
+        canvas.drawText("By Dr. " +doc_name,20,105,paint);
 
         canvas.drawText("Illness : "+ill.getText(),20,125,paint);
         canvas.drawText("Prescription : ",20,145,paint);
