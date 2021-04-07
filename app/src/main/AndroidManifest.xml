@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -14,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".search_doctor"></activity>
+        <activity android:name=".search_doctor">
+        </activity>
         <activity android:name=".searchdoctor" />
         <activity android:name=".patient_home_info" />
         <activity android:name=".doc_home_info" />
@@ -23,8 +25,7 @@
         <activity android:name=".doctor_home" />
         <activity android:name=".patientHome" />
         <activity
-            android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,11 +33,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".RegisterActivity" />
         <activity
-            android:name=".login"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".login" />
         <activity android:name=".pharmacyregistration" />
         <activity android:name=".patientregistration" />
         <activity android:name=".doctoregistration" />

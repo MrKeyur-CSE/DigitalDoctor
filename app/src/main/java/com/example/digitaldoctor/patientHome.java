@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -41,7 +42,6 @@ import androidmads.library.qrgenearator.QRGEncoder;
 public class patientHome extends AppCompatActivity {
 
     private TextView patientbacktologin;
-    private ImageView log;
     private ListView listView;
     private List<String> nameList = new ArrayList<>();
     private List<String> specList = new ArrayList<>();
@@ -49,8 +49,7 @@ public class patientHome extends AppCompatActivity {
     private List<String> addList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
     CollectionReference dRef = pStore.collection("Doctor");
-    ImageView gotopatientinfo;
-    ImageView search;
+    ImageView gotopatientinfo,search,log;
     Dialog myDialog;
     String s1,s2,s3,s4;
 
@@ -120,7 +119,7 @@ public class patientHome extends AppCompatActivity {
                 s3 = numList.get(position);
                 s4 = addList.get(position);
 
-                Toast.makeText(getApplicationContext(),"This is "+ s1,Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"This is "+ address,Toast.LENGTH_SHORT).show();
                 ShowPopup(this);
             }
         });
@@ -128,23 +127,41 @@ public class patientHome extends AppCompatActivity {
     public void ShowPopup(AdapterView.OnItemClickListener v) {
         myDialog.setContentView(R.layout.docinfo_popup);
 
-        TextView txtclose;
-        TextView docname;
-        TextView docspec;
-        TextView docnum;
-        TextView docadd;
+        TextView txtclose,docname,docspec,docnum,docadd;
+        ImageView call;
+        ImageView location;
 
         txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
         docname =(TextView) myDialog.findViewById(R.id.docname);
         docspec =(TextView) myDialog.findViewById(R.id.docspec);
         docnum =(TextView) myDialog.findViewById(R.id.docnum);
         docadd =(TextView) myDialog.findViewById(R.id.docadd);
+        call = (ImageView) myDialog.findViewById(R.id.call);
+        location = (ImageView) myDialog.findViewById(R.id.location);
 
         txtclose.setText("X");
         docname.setText(s1);
         docspec.setText(s2);
         docnum.setText(s3);
         docadd.setText(s4);
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:"+s3));
+                startActivity(callIntent);
+            }
+        });
+
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = "https://www.google.ca/maps/place/" + s4 ;
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(intent);
+            }
+        });
 
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -18,12 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 public class patient_home_info extends AppCompatActivity {
 
 
-    private TextView back_txt;
-    private TextView patientname;
-    private TextView patientemail;
-    private TextView patientblood;
-    private TextView patientmobileno;
-    private TextView patientdiet;
+    private TextView back_txt,patientname,patientemail,patientblood,patientmobileno,patientdiet;
     String userId;
     FirebaseAuth pAuth;
     FirebaseFirestore pStore;

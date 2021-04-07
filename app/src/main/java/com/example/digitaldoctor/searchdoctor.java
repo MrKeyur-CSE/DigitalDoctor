@@ -55,26 +55,25 @@ public class searchdoctor extends AppCompatActivity {
                 for (DocumentSnapshot snapshot : documentSnapshots) {
                     nameList.add(snapshot.getString("full_name"));
                 }
-                //nameList = new ArrayList<String>();
+//                nameList = new ArrayList<String>();
                 listView.setAdapter(adapter);
             }
         });
 
 
         searchdoctor = findViewById(R.id.searchdoctor);
+        searchdoctor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
-//        searchdoctor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adapter.getFilter().filter(newText);
-//                return false;
-//            }
-//        });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return false;
+            }
+        });
 
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
