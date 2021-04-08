@@ -42,17 +42,17 @@ import java.util.List;
 import androidmads.library.qrgenearator.QRGContents;
 import androidmads.library.qrgenearator.QRGEncoder;
 
-public class history_log extends AppCompatActivity {
+public class patient_history_log extends AppCompatActivity {
 
     private TextView back_txt;
     private ListView listView;
     private List<String> nameList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
     CollectionReference dRef = pStore.collection("Prescription");
-    CollectionReference doctorRef = pStore.collection("Doctor");
+    CollectionReference patientRef = pStore.collection("Patient");
     Dialog myDialog;
     Bitmap img;
-    String userId, docname;
+    String userId, patientname;
     FirebaseAuth pAuth;
 
 
@@ -61,17 +61,17 @@ public class history_log extends AppCompatActivity {
 //        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
 //        getSupportActionBar().hide(); // hide the title bar
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_log);
+        setContentView(R.layout.activity_patient_history_log);
         myDialog = new Dialog(this);
 
         pAuth = FirebaseAuth.getInstance();
         userId = pAuth.getCurrentUser().getUid();
-        DocumentReference pReff = pStore.collection("Doctor").document(userId);
+        DocumentReference pReff = pStore.collection("Patient").document(userId);
 
         pReff.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                docname = documentSnapshot.getString("full_name");
+                patientname = documentSnapshot.getString("full_name");
             }
         });
 
@@ -129,22 +129,22 @@ public class history_log extends AppCompatActivity {
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
                 nameList.clear();
                 for (DocumentSnapshot snapshot : documentSnapshots) {
-                        String description = snapshot.getString("discription");
+                    String description = snapshot.getString("discription");
 //                    String date = snapshot.getString("date");
-                        String ill = snapshot.getString("ill");
-                        String p1 = snapshot.getString("p1");
-                        String p2 = snapshot.getString("p2");
-                        String p3 = snapshot.getString("p3");
-                        String p4 = snapshot.getString("p4");
-                        String cmpdocname = snapshot.getString("doctorname");
-                        Long prescriptionNo = snapshot.getLong("prescriptionNo");
-                        String text = "Prescription No : " + prescriptionNo + "\nIllness : " + ill
-                                + "\nMedication : \n - " + p1 + "\n - " + p2 + "\n - " + p3
-                                + "\n - " + p4 + "\nDescription : " + description;
-                        if(cmpdocname.equals(docname)) {
-                            nameList.add(text);
-                        }
-                        //nameList.add(snapshot.getString("p1"));
+                    String ill = snapshot.getString("ill");
+                    String p1 = snapshot.getString("p1");
+                    String p2 = snapshot.getString("p2");
+                    String p3 = snapshot.getString("p3");
+                    String p4 = snapshot.getString("p4");
+                    String cmppatientname = snapshot.getString("patientname");
+                    Long prescriptionNo = snapshot.getLong("prescriptionNo");
+                    String text = "Prescription No : " + prescriptionNo + "\nIllness : " + ill
+                            + "\nMedication : \n - " + p1 + "\n - " + p2 + "\n - " + p3
+                            + "\n - " + p4 + "\nDescription : " + description;
+                    if(cmppatientname.equals(patientname)) {
+                        nameList.add(text);
+                    }
+                    //nameList.add(snapshot.getString("p1"));
                 }
                 final ArrayAdapter adapter = new ArrayAdapter<String>(getApplicationContext(),R.layout.list_item, nameList);
                 listView.setAdapter(adapter);

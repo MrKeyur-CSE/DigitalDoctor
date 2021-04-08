@@ -2,14 +2,7 @@ package com.example.digitaldoctor;
 
 public class DataObj {
     long prescriptionNo;
-    String date;
-
-    String discription;
-    String ill;
-    String p1;
-    String p2;
-    String p3;
-    String p4;
+    String discription, ill, p1, p2, p3, p4, date, patientname, doctorname;
 
     public DataObj() {
     }
@@ -76,5 +69,21 @@ public class DataObj {
 
     public void setP4(String p4) {
         this.p4 = p4;
+    }
+
+    public String getPatientname() {
+        return patientname;
+    }
+
+    public void setPatientname(String patientname) {
+        this.patientname = patientname;
+    }
+
+    public String getDoctorname() {
+        return doctorname;
+    }
+
+    public void setDoctorname(String doctorname) {
+        this.doctorname = doctorname;
     }
 }

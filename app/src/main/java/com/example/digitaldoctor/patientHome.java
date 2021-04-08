@@ -98,7 +98,7 @@ public class patientHome extends AppCompatActivity {
         log.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),history_log.class));
+                startActivity(new Intent(getApplicationContext(),patient_history_log.class));
             }
         });
 

@@ -58,8 +58,8 @@ public class prescription extends AppCompatActivity {
     FirebaseFirestore fRef = FirebaseFirestore.getInstance();
     CollectionReference cRef = fRef.collection("Prescription");
     FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    String uid_doc;
-    private String doc_name;
+    String uid_doc,s;
+    private String doc_name,doc_add;
     CollectionReference dRef = fRef.collection("Doctor");
     DataObj dataObj = new DataObj();
     Button btnloginbutton;
@@ -89,6 +89,8 @@ public class prescription extends AppCompatActivity {
         date = findViewById(R.id.editTextDate_1);
         uid_doc = fAuth.getCurrentUser().getUid();
         DocumentReference pReff = fRef.collection("Doctor").document(uid_doc);
+        Intent i = getIntent();
+        s = i.getStringExtra("Name");
 
 
         /*myRef.addValueEventListener(new ValueEventListener() {
@@ -137,6 +139,7 @@ public class prescription extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
                 doc_name = documentSnapshot.getString("full_name");
+                doc_add = documentSnapshot.getString("address");
             }
         });
 
@@ -151,6 +154,8 @@ public class prescription extends AppCompatActivity {
                 dataObj.p4 = String.valueOf(p4.getText());
                 dataObj.discription = String.valueOf(discription.getText());
                 dataObj.date =String.valueOf(date.getText());
+                dataObj.patientname = s;
+                dataObj.doctorname = doc_name;
 
                 cRef.document(String.valueOf(count+1)).set(dataObj);
 
@@ -168,8 +173,6 @@ public class prescription extends AppCompatActivity {
 
 
     private void printPdf() throws IOException {
-        Intent i = getIntent();
-        String s = i.getStringExtra("Name");
         PdfDocument myPdfDocument = new PdfDocument();
         Paint paint = new Paint();
         Paint forLinePaint = new Paint();
@@ -182,8 +185,8 @@ public class prescription extends AppCompatActivity {
 
         canvas.drawText("Digital Doctor", 20, 20,paint);
         paint.setTextSize(8.5f);
-        canvas.drawText("Address : 101, Sai Residency,",20,40,paint);
-        canvas.drawText("Surat , 395002",20,55,paint);
+        canvas.drawText("Address : "+doc_add,20,40,paint);
+//        canvas.drawText("Surat , 395002",20,55,paint);
         forLinePaint.setStyle(Paint.Style.STROKE);
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
         forLinePaint.setStrokeWidth(2);
@@ -215,16 +218,16 @@ public class prescription extends AppCompatActivity {
         canvas.drawText("Get Well Soon!",canvas.getWidth()/2,320,paint);
 
         myPdfDocument.finishPage(myPage);
-        /* String url1 = Environment.getExternalStorageDirectory().getAbsolutePath();
-        File file = new File(  Environment.getExternalStorageDirectory().getAbsolutePath().concat("/Presentation.pdf"));
-        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/digidoc/");
-        direct.mkdirs();
-        File file = new File(direct,System.currentTimeMillis()+".pdf");
-        if(!direct.exists()){
-            File walllpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/digidoc/");
-            walllpaperDirectory.mkdirs();
-        }
-        */
+//        String url1 = Environment.getExternalStorageDirectory().getAbsolutePath();
+//        File file = new File(  Environment.getExternalStorageDirectory().getAbsolutePath().concat("/Presentation.pdf"));
+//        File direct = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/digidoc/");
+//        direct.mkdirs();
+//        File file = new File(direct,System.currentTimeMillis()+".pdf");
+//        if(!direct.exists()){
+//            File walllpaperDirectory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/digidoc/");
+//            walllpaperDirectory.mkdirs();
+//        }
+
 
         File file = new File(Environment.getExternalStorageDirectory() + "/Download/Prescription_"+String.valueOf(count+1)+".pdf");
 
@@ -259,26 +262,25 @@ public class prescription extends AppCompatActivity {
         }
         else {
             Toast.makeText(getApplicationContext(),"Permission Denied ",Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        }
-    }
-/*
-    private void CreateFolder() {
-        File file = new File(Environment.getExternalStorageDirectory(), sName);
-        if(file.exists()){
-            Toast.makeText(getApplicationContext(),"File already",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            file.mkdir();
-            if (file.isDirectory()){
-                Toast.makeText(getApplicationContext(),"File created",Toast.LENGTH_SHORT).show();
-            }
-            else {
-                //Toast.makeText(getApplicationContext(),"File not createdddddd",Toast.LENGTH_SHORT).show();
-                String sMes = "errorr: "+ "\n" + Environment.getExternalStorageDirectory();
-                Toast.makeText(getApplicationContext(),sMes,Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-*/
+//    private void CreateFolder() {
+//        File file = new File(Environment.getExternalStorageDirectory(), sName);
+//        if(file.exists()){
+//            Toast.makeText(getApplicationContext(),"File already",Toast.LENGTH_SHORT).show();
+//        }
+//        else {
+//            file.mkdir();
+//            if (file.isDirectory()){
+//                Toast.makeText(getApplicationContext(),"File created",Toast.LENGTH_SHORT).show();
+//            }
+//            else {
+//                //Toast.makeText(getApplicationContext(),"File not createdddddd",Toast.LENGTH_SHORT).show();
+//                String sMes = "errorr: "+ "\n" + Environment.getExternalStorageDirectory();
+//                Toast.makeText(getApplicationContext(),sMes,Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+
 }

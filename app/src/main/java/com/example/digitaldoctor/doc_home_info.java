@@ -1,12 +1,17 @@
 package com.example.digitaldoctor;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -22,6 +27,7 @@ public class doc_home_info extends AppCompatActivity {
     private TextView doclicenseno;
     private TextView docmobileno;
     private TextView docspeciality;
+    Button doclogout;
     String userId;
     FirebaseAuth pAuth;
     FirebaseFirestore pStore;
@@ -78,13 +84,19 @@ public class doc_home_info extends AppCompatActivity {
             }
         });
 
-
-
         docinfoBack = findViewById(R.id.backtodochome);
         docinfoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        doclogout = (Button)findViewById(R.id.doclogout);
+        doclogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),login.class));
             }
         });
     }

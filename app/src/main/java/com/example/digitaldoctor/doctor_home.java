@@ -1,4 +1,4 @@
-package com.example.digitaldoctor;
+ package com.example.digitaldoctor;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,8 +34,8 @@ public class doctor_home extends AppCompatActivity {
     private ListView listView;
     private List<String> nameList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
-    CollectionReference dRef = pStore.collection("Patient");
-    private String userid;
+//    CollectionReference dRef = pStore.collection("Patient");
+//    private String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +50,13 @@ public class doctor_home extends AppCompatActivity {
             }
         });
 
-        img =(ImageView) findViewById(R.id.add);
+        img =(ImageView) findViewById(R.id.log);
         img.bringToFront();
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                startActivity(new Intent(getApplicationContext(),Scanned_qr.class));
-                Intent myIntent = new Intent(doctor_home.this, prescription.class);
+                Intent myIntent = new Intent(doctor_home.this, history_log.class);
                 startActivity(myIntent);
             }
         });
