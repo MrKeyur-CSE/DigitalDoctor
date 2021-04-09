@@ -34,6 +34,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidmads.library.qrgenearator.QRGContents;
@@ -49,9 +50,12 @@ public class patientHome extends AppCompatActivity {
     private List<String> addList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
     CollectionReference dRef = pStore.collection("Doctor");
-    ImageView gotopatientinfo,search,log;
+    CollectionReference pRef = pStore.collection("Patient");
+    ImageView gotopatientinfo,search,log,diet;
     Dialog myDialog;
-    String s1,s2,s3,s4;
+    String s1,s2,s3,s4,userId, prefrance, weight, height, dob;
+    FirebaseAuth pAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +79,20 @@ public class patientHome extends AppCompatActivity {
             }
         });
 
+        pAuth = FirebaseAuth.getInstance();
+        userId = pAuth.getCurrentUser().getUid();
+        DocumentReference pReff = pStore.collection("Patient").document(userId);
+
+        pReff.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                height = documentSnapshot.getString("height_cm");
+                weight = documentSnapshot.getString("weight_kg");
+                prefrance = documentSnapshot.getString("diet");
+                dob = documentSnapshot.getString("dob");
+            }
+        });
+
         listView = findViewById(R.id.listofpatient);
         pStore.collection("Doctor").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -91,6 +109,21 @@ public class patientHome extends AppCompatActivity {
                 }
                 ArrayAdapter<String>adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item,nameList);
                 listView.setAdapter(adapter);
+            }
+        });
+
+        diet = findViewById(R.id.diet);
+        diet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), diet_home.class);
+                intent.putExtra("height", height);
+                intent.putExtra("weight", weight);
+                intent.putExtra("diet", prefrance);
+                intent.putExtra("dob", dob);
+                startActivity(intent);
+//                String url = "https://diet-recommendation.herokuapp.com/21/"+weight+"/"+height+"/"+prefrance;
+//                startActivity(new Intent(getApplicationContext(),diet_home.class));
             }
         });
 
@@ -123,6 +156,7 @@ public class patientHome extends AppCompatActivity {
                 ShowPopup(this);
             }
         });
+
     }
     public void ShowPopup(AdapterView.OnItemClickListener v) {
         myDialog.setContentView(R.layout.docinfo_popup);

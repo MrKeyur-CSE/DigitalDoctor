@@ -3,13 +3,21 @@ package com.example.digitaldoctor;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -36,6 +44,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.zxing.WriterException;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +65,7 @@ public class patient_history_log extends AppCompatActivity {
     Bitmap img;
     String userId, patientname;
     FirebaseAuth pAuth;
+    ImageView download;
 
 
     @Override
@@ -157,6 +169,7 @@ public class patient_history_log extends AppCompatActivity {
         myDialog.setContentView(R.layout.qr_popup);
         txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
         popimg = (ImageView) myDialog.findViewById(R.id.popimage);
+        download = myDialog.findViewById(R.id.download);
         txtclose.setText("X");
 
         txtclose.setOnClickListener(new View.OnClickListener() {
@@ -165,6 +178,14 @@ public class patient_history_log extends AppCompatActivity {
                 myDialog.dismiss();
             }
         });
+
+        download.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext()," Prescription Downloaded ",Toast.LENGTH_SHORT).show();
+            }
+        });
+
         popimg.setImageBitmap(img);
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();

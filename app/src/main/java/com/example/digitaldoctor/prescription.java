@@ -195,7 +195,7 @@ public class prescription extends AppCompatActivity {
         canvas.drawText("Patient Name : "+ s,20,80,paint);
         canvas.drawLine(20,90,230,90,forLinePaint);
 
-        canvas.drawText("By Dr. " +doc_name,20,105,paint);
+        canvas.drawText("By " +doc_name,20,105,paint);
 
         canvas.drawText("Illness : "+ill.getText(),20,125,paint);
         canvas.drawText("Prescription : ",20,145,paint);

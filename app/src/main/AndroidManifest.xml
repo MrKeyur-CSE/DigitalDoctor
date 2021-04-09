@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".patient_history_log"></activity>
-        <activity android:name=".search_doctor"></activity>
+        <activity android:name=".diet_home"></activity>
+        <activity android:name=".patient_history_log" />
+        <activity android:name=".search_doctor" />
         <activity android:name=".searchdoctor" />
         <activity android:name=".patient_home_info" />
         <activity android:name=".doc_home_info" />
