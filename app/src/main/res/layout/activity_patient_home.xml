@@ -67,11 +67,11 @@
         android:id="@+id/search"
         android:layout_width="42dp"
         android:layout_height="50dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/diet"
-        app:layout_constraintHorizontal_bias="0.214"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/search" />
 
@@ -79,20 +79,22 @@
         android:id="@+id/diet"
         android:layout_width="42dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/log"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/diet" />
 
     <ImageView
         android:id="@+id/log"
         android:layout_width="42dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/diet"
         app:srcCompat="@drawable/log" />
 
 

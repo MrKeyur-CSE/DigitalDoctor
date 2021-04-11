@@ -9,8 +9,8 @@
 
     <RadioGroup
         android:id="@+id/radioGroup3"
-        android:layout_width="247dp"
-        android:layout_height="291dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="280dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,11 +21,11 @@
 
         <Button
             android:id="@+id/patient"
-            android:layout_width="105dp"
+            android:layout_width="125dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="65dp"
             android:backgroundTint="#253A4B"
-            android:textColor="@color/colorPrimary"
+            android:background="@drawable/reg_button"
+            android:textColor="@color/white"
             android:elevation="100dp"
             android:text="Patient"
             android:textSize="14sp"
@@ -33,12 +33,13 @@
 
         <Button
             android:id="@+id/doctor"
-            android:layout_width="105dp"
+            android:layout_width="125dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="65dp"
             android:layout_marginTop="70dp"
             android:backgroundTint="#253A4B"
-            android:textColor="@color/colorPrimary"
+            android:background="@drawable/reg_button"
+            android:textColor="@color/white"
+            android:gravity="center"
             android:elevation="100dp"
             android:text="Doctor"
             android:textSize="14sp"
@@ -46,14 +47,14 @@
 
         <Button
             android:id="@+id/pharmacy"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
             android:layout_marginTop="70dp"
+            android:background="@drawable/reg_button"
             android:backgroundTint="#253A4B"
-            android:textColor="@color/colorPrimary"
             android:elevation="100dp"
             android:text="Pharmacy"
+            android:textColor="@color/white"
             android:textSize="14sp"
             app:cornerRadius="24dp"
             tools:layout_editor_absoluteX="207dp"
@@ -72,7 +73,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup3"
-        app:layout_constraintVertical_bias="0.417" />
+        app:layout_constraintVertical_bias="0.421" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

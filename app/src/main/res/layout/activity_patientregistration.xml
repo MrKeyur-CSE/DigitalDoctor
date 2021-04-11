@@ -41,11 +41,12 @@
 
         <EditText
             android:id="@+id/patname"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="28dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Name"
             android:inputType="textPersonName"
@@ -57,11 +58,12 @@
 
         <EditText
             android:id="@+id/patemail"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" E-mail"
             android:inputType="textPersonName"
@@ -72,11 +74,12 @@
 
         <EditText
             android:id="@+id/patmobile"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Mobile number"
             android:inputType="number"
@@ -87,11 +90,12 @@
 
         <EditText
             android:id="@+id/patpass"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Password"
             android:inputType="textPassword"
@@ -102,11 +106,12 @@
 
         <EditText
             android:id="@+id/patDOB"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" DD / MM / YYYY"
             android:inputType="date"
@@ -158,11 +163,12 @@
 
         <EditText
             android:id="@+id/patbloodgroup"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Blood Group"
             android:inputType="text"
@@ -173,14 +179,15 @@
 
         <EditText
             android:id="@+id/patAddress"
-            android:layout_width="245dp"
-            android:layout_height="82dp"
+            android:layout_width="300dp"
+            android:layout_height="90dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/addressview"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Address"
-            android:inputType="textImeMultiLine"
+            android:inputType="textMultiLine"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
@@ -202,30 +209,18 @@
 
         <EditText
             android:id="@+id/heightnumber"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:paddingLeft="7dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
-            android:layout_marginTop="24dp"
             android:layout_marginStart="24dp"
-            android:background="@android:color/white"
+            android:layout_marginTop="24dp"
             android:ems="10"
+            android:hint=" in cm"
             android:inputType="number"
             android:textColor="#253A4B"
-            app:layout_constraintEnd_toStartOf="@+id/cm"
-            app:layout_constraintHorizontal_bias="0.771"
             app:layout_constraintStart_toEndOf="@+id/height"
-            app:layout_constraintTop_toBottomOf="@+id/patAddress" />
-
-        <TextView
-            android:id="@+id/cm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="60dp"
-            android:text=" cm"
-            android:textColor="#253A4B"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/patAddress" />
 
         <TextView
@@ -242,30 +237,20 @@
 
         <EditText
             android:id="@+id/weightnumber"
-            android:layout_width="50dp"
-            android:layout_height="30dp"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
+            android:hint=" in kg"
             android:ems="10"
             android:inputType="number"
             android:textColor="#253A4B"
             app:layout_constraintStart_toEndOf="@+id/weight"
             app:layout_constraintTop_toBottomOf="@+id/heightnumber" />
 
-        <TextView
-            android:id="@+id/kg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text=" kg"
-            android:textColor="#253A4B"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.182"
-            app:layout_constraintStart_toEndOf="@+id/weightnumber"
-            app:layout_constraintTop_toBottomOf="@+id/cm" />
 
         <RadioGroup
             android:id="@+id/VegGroup"
@@ -300,8 +285,8 @@
 
         <Button
             android:id="@+id/loginbutton"
-            android:layout_width="113dp"
-            android:layout_height="52dp"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="15dp"

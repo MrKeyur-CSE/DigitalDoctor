@@ -3,12 +3,16 @@ package com.example.digitaldoctor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,6 +30,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +53,7 @@ public class doctoregistration extends AppCompatActivity {
     static final String KEY_D_DOB = "dob";
     static final String KEY_D_GENDER = "gender";
 
-
+    int year, month, day;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView dBack;
@@ -80,6 +87,33 @@ public class doctoregistration extends AppCompatActivity {
         dTimeto = findViewById(R.id.doctimetonumber);
         dGender = findViewById(R.id.docRadioGroup);
         dName = findViewById(R.id.docname);
+
+        final Calendar calendar = Calendar.getInstance();
+        dDob.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                dDob.setInputType(InputType.TYPE_NULL);
+                return false;
+            }
+        });
+
+        dDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year = calendar.get(calendar.YEAR);
+                month = calendar.get(calendar.MONTH);
+                day = calendar.get(calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(doctoregistration.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month+1;
+                        String date = day+"/"+month+"/"+year;
+                        dDob.setText(date);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+            }
+        });
 
 
 

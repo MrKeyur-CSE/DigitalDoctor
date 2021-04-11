@@ -41,11 +41,12 @@
 
         <EditText
             android:id="@+id/docname"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="28dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Name"
             android:inputType="textPersonName"
@@ -57,11 +58,12 @@
 
         <EditText
             android:id="@+id/docemail"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" E-mail"
             android:inputType="textPersonName"
@@ -72,11 +74,12 @@
 
         <EditText
             android:id="@+id/docmobile"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Mobile number"
             android:inputType="number"
@@ -87,11 +90,12 @@
 
         <EditText
             android:id="@+id/docpass"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Password"
             android:inputType="textPassword"
@@ -102,11 +106,12 @@
 
         <EditText
             android:id="@+id/docDOB"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" DD / MM / YYYY"
             android:inputType="date"
@@ -114,7 +119,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/docpass" />
-
 
         <RadioGroup
             android:id="@+id/docRadioGroup"
@@ -158,11 +162,12 @@
 
         <EditText
             android:id="@+id/doclicenseno"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" License Number"
             android:inputType="number"
@@ -173,11 +178,12 @@
 
         <EditText
             android:id="@+id/docdepartment"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Department"
             android:inputType="text"
@@ -188,11 +194,12 @@
 
         <EditText
             android:id="@+id/docSpeciality"
-            android:layout_width="244dp"
-            android:layout_height="35dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Speciality"
             android:inputType="text"
@@ -203,14 +210,15 @@
 
         <EditText
             android:id="@+id/docAddress"
-            android:layout_width="245dp"
-            android:layout_height="82dp"
+            android:layout_width="300dp"
+            android:layout_height="90dp"
+            android:paddingLeft="20dp"
+            android:background="@drawable/addressview"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
             android:ems="10"
             android:hint=" Address"
-            android:inputType="textImeMultiLine"
+            android:inputType="textMultiLine"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -256,11 +264,12 @@
 
         <EditText
             android:id="@+id/doctimetonumber"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:paddingLeft="7dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
-            android:background="@android:color/white"
+            android:background="@drawable/editextbck"
             android:ems="10"
             android:hint=" time to"
             android:inputType="time"
@@ -272,11 +281,12 @@
 
         <EditText
             android:id="@+id/doctimefromnumber"
-            android:layout_width="94dp"
-            android:layout_height="31dp"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:paddingLeft="7dp"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:background="@android:color/white"
+            android:background="@drawable/editextbck"
             android:ems="10"
             android:hint=" time from"
             android:inputType="time"
@@ -288,8 +298,8 @@
 
         <Button
             android:id="@+id/loginbutton"
-            android:layout_width="113dp"
-            android:layout_height="52dp"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="15dp"

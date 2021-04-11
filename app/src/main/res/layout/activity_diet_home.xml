@@ -36,8 +36,10 @@
 
     <EditText
         android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:layout_marginTop="36dp"
         android:ems="10"
         android:inputType="number"
@@ -48,8 +50,10 @@
 
     <EditText
         android:id="@+id/height"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
@@ -60,8 +64,10 @@
 
     <EditText
         android:id="@+id/weight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="number"
@@ -102,8 +108,8 @@
 
     <Button
         android:id="@+id/getdiet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_button"
         android:text="Get Diet"

@@ -3,12 +3,16 @@ package com.example.digitaldoctor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,6 +29,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,6 +56,7 @@ public class patientregistration extends AppCompatActivity {
     private RadioGroup pGender, pDiet;
     private RadioButton genderbutton_p, dietbutton_p;
     private Button pSignup;
+    int year, month, day;
 
     String UserId;
 
@@ -74,6 +81,33 @@ public class patientregistration extends AppCompatActivity {
         pGender = findViewById(R.id.patRadioGroup);
         pDiet = findViewById(R.id.VegGroup);
         pSignup = findViewById(R.id.loginbutton);
+
+        final Calendar calendar = Calendar.getInstance();
+        pDob.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                pDob.setInputType(InputType.TYPE_NULL);
+                return false;
+            }
+        });
+
+        pDob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year = calendar.get(calendar.YEAR);
+                month = calendar.get(calendar.MONTH);
+                day = calendar.get(calendar.DAY_OF_MONTH);
+                DatePickerDialog datePickerDialog = new DatePickerDialog(patientregistration.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month = month+1;
+                        String date = day+"/"+month+"/"+year;
+                        pDob.setText(date);
+                    }
+                },year,month,day);
+                datePickerDialog.show();
+            }
+        });
 
 
         pSignup.setOnClickListener(new View.OnClickListener() {

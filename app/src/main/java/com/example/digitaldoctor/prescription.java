@@ -47,6 +47,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Objects;
 
 import static androidx.appcompat.app.AlertDialog.*;
@@ -86,7 +87,6 @@ public class prescription extends AppCompatActivity {
         p4 = findViewById(R.id.prescription_4);
         ill = findViewById(R.id.name);
         discription = findViewById(R.id.details);
-        date = findViewById(R.id.editTextDate_1);
         uid_doc = fAuth.getCurrentUser().getUid();
         DocumentReference pReff = fRef.collection("Doctor").document(uid_doc);
         Intent i = getIntent();
@@ -153,7 +153,10 @@ public class prescription extends AppCompatActivity {
                 dataObj.p3 = String.valueOf(p3.getText());
                 dataObj.p4 = String.valueOf(p4.getText());
                 dataObj.discription = String.valueOf(discription.getText());
-                dataObj.date =String.valueOf(date.getText());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar c = Calendar.getInstance();
+                String date = sdf.format(c.getTime());
+                dataObj.date = date;
                 dataObj.patientname = s;
                 dataObj.doctorname = doc_name;
 
@@ -185,7 +188,6 @@ public class prescription extends AppCompatActivity {
 
         canvas.drawText("Digital Doctor", 20, 20,paint);
         paint.setTextSize(8.5f);
-        canvas.drawText("Address : "+doc_add,20,40,paint);
 //        canvas.drawText("Surat , 395002",20,55,paint);
         forLinePaint.setStyle(Paint.Style.STROKE);
         forLinePaint.setPathEffect(new DashPathEffect(new float[]{5,5},0));
@@ -209,8 +211,11 @@ public class prescription extends AppCompatActivity {
         canvas.drawLine(20,210,230,210,forLinePaint);
 
        // canvas.drawText("Date : "+datePatternformat.format(new Date().getTime()),20,260,paint);
-        canvas.drawText("Date : "+String.valueOf(dataObj.date),20,260,paint);
-        canvas.drawText(String.valueOf(count+1),20,275,paint);
+
+        canvas.drawText("Prescription Number :"+String.valueOf(count+1),20,225,paint);
+        canvas.drawText("Date : "+String.valueOf(dataObj.date),20,240,paint);
+        canvas.drawText("Address : "+doc_add,20,255,paint);
+
         canvas.drawText("Payment Method : Cash",20,290,paint);
 
         paint.setTextAlign(Paint.Align.CENTER);

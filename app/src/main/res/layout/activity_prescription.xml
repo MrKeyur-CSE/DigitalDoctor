@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/presecription">
+    android:background="@drawable/simple_bg">
 
     <TextView
         android:id="@+id/back"
@@ -34,10 +34,11 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="247dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="172dp"
-        android:background="@android:color/transparent"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
+        android:layout_marginTop="160dp"
         android:ems="10"
         android:hint="Illness"
         android:inputType="textPersonName"
@@ -50,29 +51,14 @@
 
     <EditText
         android:id="@+id/prescription_1"
-        android:layout_width="247dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="28dp"
-        android:background="@android:color/transparent"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Prescription"
         android:inputType="textPersonName"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.548"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate_1" />
-
-    <EditText
-        android:id="@+id/editTextDate_1"
-        android:layout_width="247dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/transparent"
-        android:ems="10"
-        android:hint="DD / MM / YYYY"
-        android:inputType="date"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,10 +68,11 @@
 
     <EditText
         android:id="@+id/prescription_3"
-        android:layout_width="247dp"
-        android:layout_height="39dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:layout_marginTop="24dp"
-        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Prescription"
         android:inputType="textPersonName"
@@ -98,10 +85,11 @@
 
     <EditText
         android:id="@+id/prescription_2"
-        android:layout_width="247dp"
-        android:layout_height="39dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:layout_marginTop="24dp"
-        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Prescription"
         android:inputType="textPersonName"
@@ -114,10 +102,11 @@
 
     <EditText
         android:id="@+id/prescription_4"
-        android:layout_width="247dp"
-        android:layout_height="39dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:layout_marginTop="16dp"
-        android:background="@android:color/transparent"
         android:ems="10"
         android:hint="Prescription"
         android:inputType="textPersonName"
@@ -130,10 +119,11 @@
 
     <EditText
         android:id="@+id/details"
-        android:layout_width="245dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="32dp"
-        android:background="@android:color/transparent"
+        android:layout_marginTop="16dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/editextbck"
         android:ems="10"
         android:hint="Description"
         android:inputType="textMultiLine"
@@ -148,12 +138,13 @@
         android:id="@+id/loginbutton"
         android:layout_width="132dp"
         android:layout_height="60dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="#F23B5E"
         android:elevation="100dp"
         android:text="SAVE"
         android:textSize="18sp"
         app:cornerRadius="24dp"
+        android:background="@drawable/custom_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/details" />
