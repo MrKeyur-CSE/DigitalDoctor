@@ -124,9 +124,6 @@ public class patient_history_log extends AppCompatActivity {
                 po = position;
                 String s1 = nameList.get(position);
 
-
-                Toast.makeText(getApplicationContext(),"You click "+ po,Toast.LENGTH_SHORT).show();
-
                 QRGEncoder qrgEncoder = new QRGEncoder(s1,null,QRGContents.Type.TEXT,400);
                 Bitmap qrBits = qrgEncoder.getBitmap();
                 img = qrBits;
@@ -293,7 +290,6 @@ public class patient_history_log extends AppCompatActivity {
                 try {
                     myPdfDocument.writeTo(new FileOutputStream(file));
                 } catch (IOException e) {
-                    Log.i("My info :", "error");
                     e.printStackTrace();
                 }
 
@@ -310,7 +306,7 @@ public class patient_history_log extends AppCompatActivity {
                 myPdfDocument.close();
 //        String sMes = "error: "+ "\n" + Environment.getExternalStorageDirectory();
 //        Toast.makeText(getApplicationContext(),sMes,Toast.LENGTH_SHORT).show();
-                Toast.makeText(getApplicationContext(),"Prescription Saved" + s,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Prescription Saved",Toast.LENGTH_SHORT).show();
             }
         });
 

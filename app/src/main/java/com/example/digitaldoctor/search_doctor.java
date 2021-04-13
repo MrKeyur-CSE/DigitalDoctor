@@ -4,21 +4,33 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.icu.lang.UCharacter;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,31 +48,46 @@ import java.util.List;
 
 public class search_doctor extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    RecyclerAdapter recyclerAdapter;
-    SearchView searchdoctor;
+    SearchView searchview;
+    ListView mylist;
+    ArrayList<String> mainlist;
+    ArrayAdapter<String> adapter;
+    private List<String> specList = new ArrayList<>();
+    private List<String> numList = new ArrayList<>();
+    private List<String> addList = new ArrayList<>();
     final FirebaseFirestore pStore = FirebaseFirestore.getInstance();
-    private List<String> nameList = new ArrayList<>();
+    String s1,s2,s3,s4;
+    Dialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        requestWindowFeature(Window.FEATURE_ACTION_BAR);
-//        getSupportActionBar().show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_doctor);
+
+        myDialog = new Dialog(this);
+        searchview = findViewById(R.id.searchview);
+        mylist = findViewById(R.id.mylist);
+        mainlist = new ArrayList<String>();
 
         pStore.collection("Doctor").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException error) {
-                nameList.clear();
-                for (DocumentSnapshot snapshot : documentSnapshots){
-                    nameList.add(snapshot.getString("full_name"));
+                mainlist.clear();
+                specList.clear();
+                numList.clear();
+                addList.clear();
+                for (DocumentSnapshot snapshot : documentSnapshots) {
+                    mainlist.add(snapshot.getString("full_name"));
+                    specList.add(snapshot.getString("speciality"));
+                    numList.add(snapshot.getString("ph_no"));
+                    addList.add(snapshot.getString("address"));
                 }
             }
         });
 
-        searchdoctor = findViewById(R.id.searchdoctor);
-        searchdoctor.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mainlist);
+        mylist.setAdapter(adapter);
+        searchview.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 return false;
@@ -68,110 +95,73 @@ public class search_doctor extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                recyclerAdapter.getFilter().filter(newText);
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerAdapter = new RecyclerAdapter(nameList);
+        mylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
-        recyclerView.addItemDecoration(dividerItemDecoration);
+                s1 = mainlist.get(position);
+                s2 = specList.get(position);
+                s3 = numList.get(position);
+                s4 = addList.get(position);
 
-        recyclerView.setAdapter(recyclerAdapter);
+//                Toast.makeText(getApplicationContext(),"This is "+ position,Toast.LENGTH_SHORT).show();
+                ShowPopup(this);
+            }
+        });
+
     }
+    public void ShowPopup(AdapterView.OnItemClickListener v) {
+        myDialog.setContentView(R.layout.docinfo_popup);
 
+        TextView txtclose,docname,docspec,docnum,docadd;
+        ImageView call;
+        ImageView location;
 
-    public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> implements Filterable {
+        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+        docname =(TextView) myDialog.findViewById(R.id.docname);
+        docspec =(TextView) myDialog.findViewById(R.id.docspec);
+        docnum =(TextView) myDialog.findViewById(R.id.docnum);
+        docadd =(TextView) myDialog.findViewById(R.id.docadd);
+        call = (ImageView) myDialog.findViewById(R.id.call);
+        location = (ImageView) myDialog.findViewById(R.id.location);
 
-        private static final String TAG = "RecyclerAdapter";
-        List<String> nameList;
-        List<String> nameListAll;
+        txtclose.setText("X");
+        docname.setText(s1);
+        docspec.setText(s2);
+        docnum.setText(s3);
+        docadd.setText(s4);
 
-        public RecyclerAdapter(List<String> nameList) {
-            this.nameList = nameList;
-            this.nameListAll = new ArrayList<String>(nameList);
-        }
-
-        @NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-            LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-            View view = layoutInflater.inflate(R.layout.row_item, parent, false);
-            ViewHolder viewHolder = new ViewHolder(view);
-            return viewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.textView.setText(nameList.get(position));
-        }
-
-        @Override
-        public int getItemCount() {
-            return nameList.size();
-        }
-
-        @Override
-        public Filter getFilter() {
-            return filter;
-        }
-
-        Filter filter = new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-
-                List<String> filteredList = new ArrayList<>();
-
-                if (charSequence.toString().isEmpty() ){
-                    filteredList.addAll(nameListAll);
-                } else {
-                    for (String name:nameList){
-                        if (name.toLowerCase().contains(charSequence.toString().toLowerCase())){
-                            filteredList.add(name);
-                        }
-                    }
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = filteredList;
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                nameList.clear();
-                nameList.addAll((Collection<? extends String>) filterResults.values);
-                notifyDataSetChanged();
-            }
-        };
-
-        class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-            TextView textView;
-
-            public ViewHolder(@NonNull View itemView) {
-                super(itemView);
-
-                textView = itemView.findViewById(R.id.textView);
-                itemView.setOnClickListener(this);
-            }
-
+        call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(textView.getContext(),nameList.get(getAdapterPosition()),Toast.LENGTH_SHORT).show();
+                Intent callIntent = new Intent(Intent.ACTION_DIAL);
+                callIntent.setData(Uri.parse("tel:"+s3));
+                startActivity(callIntent);
             }
-        }
-    }
+        });
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.main_menu,menu);
-//        MenuItem item = menu.findItem(R.id.searchdoctor);
-////        SearchView searchView = (SearchView) item.getActionView();
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String uri = "https://www.google.ca/maps/place/" + s4 ;
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(intent);
+            }
+        });
+
+        txtclose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
+
+        myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        myDialog.show();
+    }
 }

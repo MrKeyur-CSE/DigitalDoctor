@@ -1,29 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".search_doctor"
-    android:background="@drawable/simple_bg">
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    android:background="@color/colorPrimary">
 
     <SearchView
-        android:id="@+id/searchdoctor"
+        android:id="@+id/searchview"
+        android:layout_width="400dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        android:queryHint="Search Here"
+        android:paddingLeft="10dp"
+        android:background="@drawable/editextbck"
+        android:iconifiedByDefault="false"></SearchView>
+
+    <ListView
+        android:id="@+id/mylist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:dividerHeight="3dp"
+        android:divider="@color/black"
+        android:listSelector="@color/gray"
+        android:scrollbarStyle="insideOverlay"
+        android:scrollbarThumbVertical="@color/gray"
+        android:text="@color/black"
+        android:layout_margin="20dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
