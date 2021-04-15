@@ -154,7 +154,7 @@ public class history_log extends AppCompatActivity {
     public void ShowPopup(AdapterView.OnItemClickListener v) {
         TextView txtclose;
         ImageView popimg;
-        myDialog.setContentView(R.layout.qr_popup);
+        myDialog.setContentView(R.layout.qr_popup_doc);
         txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
         popimg = (ImageView) myDialog.findViewById(R.id.popimage);
         txtclose.setText("X");

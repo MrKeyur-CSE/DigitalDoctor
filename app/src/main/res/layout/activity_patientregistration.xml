@@ -211,15 +211,17 @@
             android:id="@+id/heightnumber"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:paddingLeft="7dp"
-            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
+            android:background="@drawable/editextbck"
             android:ems="10"
             android:hint=" in cm"
             android:inputType="number"
+            android:paddingLeft="7dp"
             android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.103"
             app:layout_constraintStart_toEndOf="@+id/height"
             app:layout_constraintTop_toBottomOf="@+id/patAddress" />
 
@@ -228,29 +230,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="25dp"
             android:text=" Weight :"
             android:textColor="#253A4B"
             android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/height" />
 
+
         <EditText
             android:id="@+id/weightnumber"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:paddingLeft="10dp"
-            android:background="@drawable/editextbck"
             android:layout_gravity="center"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:hint=" in kg"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/editextbck"
             android:ems="10"
+            android:hint=" in kg"
             android:inputType="number"
+            android:paddingLeft="10dp"
             android:textColor="#253A4B"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.084"
             app:layout_constraintStart_toEndOf="@+id/weight"
             app:layout_constraintTop_toBottomOf="@+id/heightnumber" />
-
 
         <RadioGroup
             android:id="@+id/VegGroup"

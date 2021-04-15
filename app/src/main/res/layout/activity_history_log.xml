@@ -21,20 +21,19 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="359dp"
-        android:layout_height="726dp"
+        android:layout_width="393dp"
+        android:layout_height="665dp"
         android:divider="@color/black"
         android:dividerHeight="3dp"
         android:listSelector="@color/gray"
         android:scrollbarStyle="insideOverlay"
         android:scrollbarThumbVertical="@color/gray"
         android:text="@color/black"
-        tools:listitem="@layout/list_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.858" />
+        app:layout_constraintTop_toBottomOf="@+id/back"
+        app:layout_constraintVertical_bias="0.36"
+        tools:listitem="@layout/list_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

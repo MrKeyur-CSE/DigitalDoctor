@@ -70,7 +70,6 @@ public class prescription extends AppCompatActivity {
     SimpleDateFormat datePatternformat = new SimpleDateFormat("dd-mm-yyyy hh:mm a");
 
     private TextView back_txt;
-    private TextView log_txt;
     //String sName="Download";
     private int count = 0;
 
@@ -119,19 +118,11 @@ public class prescription extends AppCompatActivity {
         });
 
         back_txt = findViewById(R.id.back);
-        log_txt = findViewById(R.id.log);
 
         back_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
-            }
-        });
-
-        log_txt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),history_log.class));
             }
         });
 
@@ -234,6 +225,18 @@ public class prescription extends AppCompatActivity {
 //        }
 
 
+
+
+
+//        if(ActivityCompat.checkSelfPermission(prescription.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                == PackageManager.PERMISSION_GRANTED){
+//            //CreateFolder();
+//        }
+//        else {}
+            ActivityCompat.requestPermissions(prescription.this
+                    , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
+                    ,100);
+
         File file = new File(Environment.getExternalStorageDirectory() + "/Download/Prescription_"+String.valueOf(count+1)+".pdf");
 
         try {
@@ -242,15 +245,6 @@ public class prescription extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(ActivityCompat.checkSelfPermission(prescription.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                == PackageManager.PERMISSION_GRANTED){
-            //CreateFolder();
-        }
-        else {
-            ActivityCompat.requestPermissions(prescription.this
-                    , new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}
-                    ,100);
-        }
 
         myPdfDocument.close();
 //        String sMes = "error: "+ "\n" + Environment.getExternalStorageDirectory();
@@ -258,17 +252,18 @@ public class prescription extends AppCompatActivity {
         Toast.makeText(getApplicationContext(),"Prescription Saved",Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if(requestCode == 100 && (grantResults.length > 0) && (grantResults[0] ==
-                PackageManager.PERMISSION_GRANTED)){
-            //CreateFolder();
-        }
-        else {
-            Toast.makeText(getApplicationContext(),"Permission Denied ",Toast.LENGTH_SHORT).show();
-        }
-    }
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//        if(requestCode == 100 && (grantResults.length > 0) && (grantResults[0] ==
+//                PackageManager.PERMISSION_GRANTED)){
+//            //CreateFolder();
+//        }
+//        else {
+//            Toast.makeText(getApplicationContext(),"Permission Denied ",Toast.LENGTH_SHORT).show();
+//        }
+//
+//    }
 
 //    private void CreateFolder() {
 //        File file = new File(Environment.getExternalStorageDirectory(), sName);

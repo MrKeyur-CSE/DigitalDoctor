@@ -2,9 +2,12 @@ package com.example.digitaldoctor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -96,7 +99,16 @@ public class login extends AppCompatActivity {
                                                 startActivity(new Intent(getApplicationContext(),doctor_home.class));
                                             }
                                            else if(cat.equals("Pharmacy")) {
-                                               startActivity(new Intent(getApplicationContext(),Scanned_qr.class));
+
+                                                if(ActivityCompat.checkSelfPermission(login.this, Manifest.permission.CAMERA)
+                                                        == PackageManager.PERMISSION_GRANTED){
+                                                    startActivity(new Intent(getApplicationContext(),Scanned_qr.class));
+                                                }
+                                                else {
+                                                    ActivityCompat.requestPermissions(login.this
+                                                            , new String[]{Manifest.permission.CAMERA}
+                                                            ,100);
+                                                }
                                            }
                                         } else {
                                             Toast.makeText(login.this, "User isn't registered in this category", Toast.LENGTH_SHORT).show();
@@ -127,7 +139,7 @@ public class login extends AppCompatActivity {
         mBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });
     }

@@ -245,20 +245,20 @@
             android:textColor="#253A4B"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.058"
-            app:layout_constraintStart_toEndOf="@+id/time"
+            app:layout_constraintHorizontal_bias="0.441"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/docAddress" />
 
         <TextView
             android:id="@+id/timefrom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:text=" From :"
             android:textColor="#253A4B"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.411"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/timeto" />
 
@@ -266,34 +266,34 @@
             android:id="@+id/doctimetonumber"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:paddingLeft="7dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:background="@drawable/editextbck"
             android:ems="10"
             android:hint=" time to"
             android:inputType="time"
+            android:paddingLeft="7dp"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.183"
-            app:layout_constraintStart_toEndOf="@+id/timeto"
+            app:layout_constraintHorizontal_bias="0.89"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/docAddress" />
 
         <EditText
             android:id="@+id/doctimefromnumber"
             android:layout_width="100dp"
             android:layout_height="35dp"
-            android:paddingLeft="7dp"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             android:background="@drawable/editextbck"
             android:ems="10"
             android:hint=" time from"
             android:inputType="time"
+            android:paddingLeft="7dp"
             android:textColor="#253A4B"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.194"
-            app:layout_constraintStart_toEndOf="@+id/timefrom"
+            app:layout_constraintHorizontal_bias="0.89"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/doctimetonumber" />
 
         <Button
@@ -311,7 +311,6 @@
             app:cornerRadius="24dp"
             android:background="@drawable/custom_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timefrom"
             app:layout_constraintEnd_toStartOf="@+id/backtoregister"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:layout_editor_absoluteY="957dp" />

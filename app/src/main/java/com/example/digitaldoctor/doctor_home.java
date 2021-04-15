@@ -86,7 +86,7 @@ public class doctor_home extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String s1 = nameList.get(position);
-                Toast.makeText(getApplicationContext(),"You click "+ s1, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), s1, Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(doctor_home.this,prescription.class);
                 i.putExtra("Name",s1);
                 startActivity(i);
